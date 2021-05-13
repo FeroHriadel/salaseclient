@@ -1,0 +1,43 @@
+.admin-page-container {
+    width: 100%;
+    height: calc(100vh - 80px); /*80px = Header's height*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url('../public/images/mainbg.jpg') no-repeat center center/cover;
+    overflow: hidden;
+
+    h2 {
+        font-family: 'Fondamento', cursive;
+        color: #ddd;
+        text-shadow: 1px 1px 3px black;
+        filter: drop-shadow(-1px -1px 5px black);
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+    a {
+        margin-top: 1rem;
+        width: 280px;
+        height: 3rem;
+        background: rgba(100, 99, 94, 0.5);
+        border-radius: 5px;
+        text-align: center;
+        font-family: 'Fondamento', cursive;
+        font-size: 1.5rem;
+        line-height: 3rem;
+        color: #eee;
+        text-decoration: none;
+        transition: all 0.2s linear;
+        box-shadow: -2px 2px 5px #333;
+
+        &:hover {
+            box-shadow: coral 0 0 10px;
+            transform: scale(1.02);
+            color: white;
+            text-shadow: 0 0 5px #eee;
+        }
+    }
+}

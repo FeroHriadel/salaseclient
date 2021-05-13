@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.controls-container {
+    width: 100%;
+    min-height: 100vh;
+    transition: transform 1s cubic-bezier(0.55, 0.06, 0.27, 1.33);
+    transform: translateX(0);
+}
+
+.controls-container .section {
+    width: 100%;
+}
+
+.controls-container .img-container {
+    position: relative;
+    background-attachment: fixed;
+    width: 100%;
+    height: 70vh;
+    background-image: url('../public/images/mainbg.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px black inset;
+    border-bottom: coral 2px solid;
+
+    .buttons-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        .search-container, .edit-container {
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            h2 {
+                font-family: 'Fondamento', cursive;
+                color: #ddd;
+                text-shadow: 1px 1px 3px black;
+                filter: drop-shadow(-1px -1px 5px black);
+                text-align: center;
+                font-size: 2rem;
+            }
+
+            a {
+                margin-top: 1rem;
+                width: 75%;
+                height: 2.5rem;
+                background: rgba(100, 99, 94, 0.5);
+                border-radius: 5px;
+                text-align: center;
+                font-family: 'Fondamento', cursive;
+                font-size: 1.5rem;
+                line-height: 2.5rem;
+                color: white;
+                text-decoration: none;
+                transition: all 0.2s linear;
+
+                &:hover {
+                    box-shadow: coral 0 0 10px;
+                    transform: scale(1.02);
+                }
+            }
+        }
+    }
+}
+
+.controls-container section {
+    min-height: 30vh;
+    background: linear-gradient(to right top, #675A29, #413B24 50%);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.controls-container p {
+    color: #ddd;
+    font-family: NotoSans;
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 1.6;
+    text-shadow: 1px 1px 3px black;
+}
+
+.controls-container span {
+    color: coral;
+}

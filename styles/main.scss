@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@import "./fonts";
+@import './index';
+@import './about';
+@import './list';
+@import './Header';
+@import './controls';
+@import './signin';
+@import './addhut';
+@import './adminIndexPage';
+@import './locationCreate';
+@import './locationEdit';
+@import './locationList';
+@import './typeList';
+@import './typeEdit';
+@import './typeCreate';
+@import './Popup';
+@import './ConfirmModal';
+

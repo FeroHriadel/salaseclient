@@ -1,0 +1,115 @@
+.admin-location-edit-screen {
+    width: 100%;
+    height: calc(100vh - 80px); /*80px = Header's height*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('../public/images/mainbg.jpg') no-repeat center center/cover;
+    overflow: hidden;
+    position: relative;
+
+    .form-container {
+        width: 350px;
+        padding: 40px 0;
+        background: rgb(238, 235, 219);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        box-sizing: border-box;
+        box-shadow: #444 25px -25px 100px inset, black -10px 10px 10px;
+        filter: drop-shadow(rgb(78, 76, 75) 0 0 10px);
+
+        h2 {
+            color: orangered;
+            font-family: 'Fondamento', cursive;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            width: 300px;
+        }
+
+        .file-upload {
+            align-self: flex-start;
+            margin-left: 10%;
+            margin-bottom: 1rem;
+            color: orangered;
+            font-family: 'Fondamento', cursive;
+            position: relative;
+
+            .img-preview {
+                position: absolute;
+                bottom: -12.5px;
+                right: -60px;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+            }
+        }
+
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+
+            .form-group {
+                width: 80%;
+                margin-bottom: 1rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+
+                label {
+                    color: #444;
+                    font-family: 'Fondamento', cursive;
+                    margin-bottom: 5px;
+                }
+    
+                input {
+                    width: 100%;
+                    background: 0;
+                    border: 0;
+                    border-bottom: #aaa 1px solid;
+                    outline: 0;
+                    padding: 0;
+                    margin: 0;
+                    font-family: NotoSans;
+                }
+            }
+
+            button {
+                height: 2rem;
+                padding: 0 5px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.admin-location-edit-screen .go-back-btn {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    padding: 0;
+    margin: 0;
+    outline: 0;
+    background: 0;
+    border: 0;
+    font-family: NotoSans;
+    color: #ddd;
+    text-shadow: #444 -1px 1px 5px;
+    cursor: pointer;
+    transition: all 0.4s linear;
+
+    &:hover {
+        color: orangered;
+        text-shadow: coral 0 0 10px;
+        transform: scale(1.1);
+    }
+}
+

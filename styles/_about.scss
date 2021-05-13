@@ -1,0 +1,140 @@
+//general styling
+.about-page-container {
+    width: 100vw;
+    height: 100vh;
+    background: url('../public/images/about-bg.png') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.about-page-container * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+/* navigation */
+.about-page-container nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ddd;
+    margin-left: 5%; /**/
+}
+
+.about-page-container ul {
+    text-align: center;
+    list-style: none;
+}
+
+.about-page-container li {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: black 2px 2px 2px, black 0 0 5px;
+    transition: all 0.25s linear;
+    font-family: 'Lobster', cursive;
+}
+
+.about-page-container li a {
+    color: #ddd;
+    text-decoration: none;
+    font-family: 'Lobster', cursive;
+}
+
+.about-page-container li:hover {
+    transform: scale(1.1);
+    text-shadow: coral 0 0 10px, black 1px 1px 1px;
+    cursor: pointer;
+}
+
+.about-page-container li:active {
+    transform: scale(0.9);
+    text-shadow: coral 0 0 50px, black 1px 1px 1px;
+    color: coral;
+}
+
+.about-page-container .icon {
+    font-size: 1rem;
+}
+
+
+.about-page-container li:hover .icon {
+    transform: scale(1.1);
+    filter: drop-shadow(coral 0 0 10px);
+    cursor: pointer;
+}
+
+.about-page-container .current {
+    color: rgb(211, 103, 63) !important;
+    position: relative;
+}
+
+.about-page-container .current::after {
+    content: '';
+    width: 90%;
+    height: 2px;
+    background: rgb(211, 103, 63);
+    position: absolute;
+    bottom: -10%;
+    left: 5%;
+    border-radius: 50%;
+    box-shadow: 1px 1px 5px black;
+}
+
+.about-page-container .orange {
+    color: rgb(211, 103, 63);
+}
+
+
+
+
+
+/* text */
+.about-page-container .text {
+    color: #eee;
+    opacity: 0.75;
+    margin: 0 2rem;
+    margin-right: 5%;
+}
+
+.about-page-container .paragraph {
+    font-family: 'Lobster', cursive;
+    font-size: 2rem;
+    text-shadow: black 2px 2px 2px, black 0 0 5px;
+    margin-bottom: 1rem;
+}
+
+.about-page-container .text p:last-child {
+    margin-bottom: 0;
+}
+
+.about-page-container .link {
+    font-family: 'Lobster', cursive;
+    text-decoration: none;
+    color: coral;
+    cursor: pointer;
+    transition: all 0.25s linear;
+}
+
+.about-page-container .link:hover {
+    transform: scale(1.1);
+    text-shadow: coral 0 0 10px, black 1px 1px 1px;
+    cursor: pointer;
+}
+
+.about-page-container .two {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 3s linear;
+}
+
+.about-page-container .shown {
+    visibility: visible;
+    opacity: 10;
+}

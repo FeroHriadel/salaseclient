@@ -1,0 +1,236 @@
+/*page*/
+.signin-container {
+    width: 100%;
+    height: calc(100vh - 80px); /*80px = <Header />'s height*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('../public/images/mainbg.jpg') no-repeat center center/cover;
+    overflow: hidden;
+}
+
+
+/*card*/
+.signin-container .card-container {
+    width: 320px;
+    height: 400px;
+    position: relative;
+}
+
+.signin-container .card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) perspective(30cm) rotateY(0deg);
+    border-radius: 10px;
+}
+
+/*
+.signin-container .card:hover > .front {
+    transform: translate(-50%, -50%) perspective(30cm) rotateY(180deg);
+}
+
+.signin-container .card:hover > .back {
+    transform: translate(-50%, -50%) perspective(30cm) rotateY(0deg);
+}
+*/
+
+
+
+/* FRONT => SIGN IN*/
+.signin-container .front {
+    width: 100%;
+    height: 100%;
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) perspective(30cm) rotateY(0deg);
+    backface-visibility: hidden;
+    transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 10px;
+    background: rgb(238, 235, 219);
+    padding: 5%;
+    box-shadow: #444 25px -25px 100px inset, black -10px 10px 10px;
+    filter: drop-shadow(rgb(78, 76, 75) 0 0 10px);
+
+    form {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+
+        .message {
+            height: 1.6rem;
+            overflow: hidden;
+            color: 'orangered';
+            text-align: center;
+            margin-bottom: 1rem;
+            word-break: break-all;
+            width: 0%;
+            animation-name: widenMessage;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+        }
+
+        .form-group {
+            width: 100%;
+            margin-bottom: 1rem;
+
+            input {
+                width: 100%;
+                height: 2rem;
+                background: 0;
+                border: 0;
+                border-bottom: #aaa 1px solid;
+                outline: 0;
+                padding: 0;
+                margin: 0;
+            }
+        }
+    }
+}
+
+.signin-container .front h1 {
+    color: orangered;
+    font-family: 'Fondamento', cursive;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.signin-container .front p {
+    color: #444;
+    font-family: 'Fondamento', cursive;
+}
+
+.signin-container .front button {
+    height: 2rem;
+    width: 40%;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.signin-container .front .turn-card-over {
+    margin-top: 2rem;
+    color: #444;
+
+    span {
+        color: orangered;
+        cursor: pointer;
+
+        &:hover {
+            font-weight: 600;
+        }
+    }
+}
+
+
+/* BACK => SIGN UP */
+.signin-container .back {
+    width: 100%;
+    height: 100%;
+    background: rgb(238, 235, 219);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) perspective(30cm) rotateY(-180deg);
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 10px;
+    padding: 5%;
+    box-shadow: #444 25px -25px 100px inset, black -10px 10px 10px;
+    filter: drop-shadow(rgb(78, 76, 75) 0 0 10px);
+
+    .turn-card-icon {
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        color: #666;
+        cursor: pointer;
+        transition: color 0.4s linear;
+
+        &:hover {
+            color: #333;
+        }
+    }
+
+    form {
+        width: 90%;
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+
+        .message {
+            height: 1.6rem;
+            overflow: hidden;
+            color: 'orangered';
+            text-align: center;
+            margin-bottom: 1rem;
+            word-break: break-all;
+            width: 0%;
+            animation-name: widenMessage;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+        }
+
+        .form-group {
+            width: 100%;
+            margin-bottom: 1rem;
+
+            input {
+                width: 100%;
+                height: 2rem;
+                background: 0;
+                border: 0;
+                border-bottom: #aaa 1px solid;
+                outline: 0;
+                padding: 0;
+                margin: 0;
+            }
+        }
+    }
+}
+
+.signin-container .back h1 {
+    color: orangered;
+    font-family: 'Fondamento', cursive;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.signin-container .back p {
+    color: #444;
+    font-family: 'Fondamento', cursive;
+}
+
+.signin-container .back button {
+    height: 2rem;
+    width: 40%;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+
+
+@keyframes widenMessage {
+    0% {
+        width: 0%
+    }
+    100% {
+        width: 100%
+    }
+}

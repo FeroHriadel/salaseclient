@@ -1,0 +1,66 @@
+.confirm-modal-container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition: opacity 0.5s linear;
+
+    .dialogue-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        height: 300px;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        text-align: center;
+        box-shadow: orangered 0 0 10px, inset silver 0 0 20px;
+        z-index: 10;
+    }
+    
+    .dialogue-box .logo {
+        filter: drop-shadow(0 0 10px coral);
+    }
+    
+    .dialogue-box p {
+        text-align: center;
+        color: #eee;
+        font-family: NotoSans;
+        margin: 10px;
+    }
+
+    .dialogue-box .btn-wrapper {
+        display: flex;
+
+        button {
+            border: none;
+            outline: 0;
+            padding: 0;
+            background: 0;
+            color: coral;
+            font-family: NotoSans;
+            transition: all 0.4s linear;
+            margin: 0 10px;
+    
+            &:hover {
+                color: orangered;
+                text-shadow: coral 0 0 5px;
+                transform: scale(1.05);
+                cursor: pointer;
+            }
+    
+            &:active {
+                text-shadow: 0;
+                transform: scale(0.5);
+            }
+        }
+    }
+}
