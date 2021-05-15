@@ -10,12 +10,13 @@
 }
 
 
+
 /*card*/
 .addhut-container .card-container {
     width: 75%;
     height: 500px;
     position: relative;
-    opacity: 0.625;
+    opacity: 0.75;
 }
 
 .addhut-container .card {
@@ -35,6 +36,10 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
     transform: translate(-50%, -50%) perspective(30cm) rotateY(0deg);
     backface-visibility: hidden;
     transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -43,9 +48,13 @@
     padding: 5%;
     box-shadow: #444 25px -25px 100px inset, black -10px 10px 10px;
     filter: drop-shadow(rgb(78, 76, 75) 0 0 10px);
+    overflow: hidden;
 }
 
-.addhut-container .front h1 {
+
+
+/*fonts*/
+.addhut-container .front h2 {
     color: orangered;
     font-family: 'Fondamento', cursive;
     font-size: 2rem;
@@ -53,26 +62,128 @@
     margin-bottom: 1rem;
 }
 
+.addhut-container .front label {
+    color: orangered;
+    text-shadow: #222 0px 0px 1px;
+    font-family: 'Fondamento', cursive;
+    margin-right: 5px;
+    width: 150px;
+}
+
 .addhut-container .front p {
-    color: #444;
+    color: #222;
     font-family: 'Fondamento', cursive;
 }
 
-.addhut-container .front button {
-    height: 2rem;
-    width: 40%;
-    cursor: pointer;
-    margin-top: 1rem;
+
+
+/*form*/
+.addhut-container form {
+    width: 95%;
+    height: 90%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.3);
+        margin-right: 5px;
+    }
+
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .form-group {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        margin-bottom: 10px;
+
+        input {
+            background: transparent;
+            outline: 0;
+            border: 0;
+            padding: 0;
+            margin: 0;
+            font-family: 'Fondamento', cursive;
+            font-size: 1rem;
+            cursor: pointer;
+            flex: 1;
+            margin-right: 2rem;
+        }
+
+        select {
+            background: 0;
+            padding: 0;
+            margin: 0;
+            border: 0;
+            outline: 0;
+            font-family: 'Fondamento', cursive;
+            font-size: 1rem;
+            color: #666;
+            flex: 1;
+            margin-right: 2rem;
+            cursor: pointer;
+        }
+
+        textarea {
+            background: 0;
+            outline: 0;
+            padding: 0;
+            margin: 0;
+            margin-right: 2rem;
+            border: 0;
+            font-family: 'Fondamento', cursive;
+            font-size: 1rem;
+            flex: 1;
+            min-height: 3rem;
+            cursor: pointer;
+
+            &::-webkit-scrollbar {
+                background: 0;
+                width: 5px;
+            }
+
+            &::-webkit-resizer {
+                background-color: rgba(0, 0, 0, 0.11);
+                border-radius: 50%;
+
+            }
+        }
+
+        button {
+            height: 2rem;
+            margin-top: 2rem;
+            padding-left: 10px;
+            padding-right: 10px;
+            cursor: pointer;
+        }
+    }
 }
 
 
+.addhut-container .file-upload {
+    margin-bottom: 10px;
+    margin-top: 15px;
+    color: orangered;
+    font-family: 'Fondamento', cursive;
+    position: relative;
 
-
-@keyframes widenMessage {
-    0% {
-        width: 0%
-    }
-    100% {
-        width: 100%
+    .img-preview {
+        position: absolute;
+        bottom: -12.5px;
+        left: 155px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
     }
 }

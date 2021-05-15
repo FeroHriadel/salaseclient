@@ -21,7 +21,7 @@ const FileUpload = ({ values, setValues, showPopup, formSubmitObserver, setFormS
                   //console.log(uri)
                 axios.post(`${process.env.api}/uploadimages`, {image: uri}, {headers: {Authorization: `Bearer ${getCookie('token')}`}})
                 .then(res => {
-                      //console.log(res.data);
+                      // console.log(res.data);
                     setValues({...values, image: res.data});
                     setFormSubmitObserver({formSubmitted: false , imgId: res.data.public_id});
                 }).catch(err => {

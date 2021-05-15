@@ -72,7 +72,7 @@ export const authenticate = (data, next) => {
 
 
 
-//CHECK IF AUTHENTICATED
+//CHECK IF AUTHENTICATED & RETURN USER DETAILS
 export const isAuth = () => {
     if (process.browser) {
         const cookieChecked = getCookie('token');
