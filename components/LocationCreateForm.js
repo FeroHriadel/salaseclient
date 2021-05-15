@@ -15,12 +15,12 @@ const LocationCreateForm = ({ values, setValues, handleChange, handleSubmit }) =
             </div>
 
             <div className="form-group">
-                <label>Max. Longitude (West limit)</label>
+                <label>Max. Longitude (East limit)</label>
                 <input type="text" name='maxLong' value={maxLong} onChange={handleChange} placeholder='19.36903062735725' />
             </div>
 
             <div className="form-group">
-                <label>Min. Longitude (East limit)</label>
+                <label>Min. Longitude (West limit)</label>
                 <input type="text" name='minLong' value={minLong} onChange={handleChange} placeholder='18.85306048433267' />
             </div>
 

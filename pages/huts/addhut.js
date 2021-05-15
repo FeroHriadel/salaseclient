@@ -8,6 +8,8 @@ import { getLocations } from '../../actions/locationActions';
 import { getTypes } from '../../actions/typeActions';
 import { deleteLocationImage } from '../../actions/locationActions'; //this should not have been called 'deleteLOCATIONimage' but just 'deleteImage' but I ain't gonna be rewritting the name all over the place.
 import { addHut } from '../../actions/hutActions';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -135,16 +137,34 @@ const addhut = () => {
       //submit handler
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (!name || !latitude || !longitude || !location || !type || !image) {
+            return showPopup(`Please make sure name, lat, long, mountain range, type & image are filled in`);
+        }
+
         addHut(values)
             .then(data => {
                 if (data.error) {
                     return showPopup(data.error);
                 }
-
-                console.log(data); //
                 showPopup(`Hut Created`);
-            })
-    }
+            });
+
+        setFormSubmitObserver({formSubmitted: true, imgId: null});
+        setValues({
+            name: '',
+            latitude: '',
+            longitude: '',
+            location: '',
+            type: '',
+            image: {},
+            where: '',
+            objectdescription: '',
+            water: '',
+            warning: '',
+            addedby: ''
+        });
+    };
 
       //get user who's adding a hut
     useEffect(() => {
@@ -269,7 +289,14 @@ const addhut = () => {
             <Header setLoggedOut={setLoggedOut} protectedRoute={true} />
 
             <div className='addhut-container'>
-                <div className="card-container">        
+
+                <button className="go-back-btn" onClick={() => {Router.push('/controls')}}>
+                    <FontAwesomeIcon icon={faArrowLeft} className='icon'/>
+                    {' '}
+                    Go Back
+                </button>
+                
+                <div className="card-container">
                     <div className="card">
                         <div className='front'>
 

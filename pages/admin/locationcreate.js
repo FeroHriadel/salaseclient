@@ -103,21 +103,21 @@ const locationCreate = () => {
             return;
         }
 
-        if (
-            !parseFloat(values.maxLong) ||
-            parseFloat(values.maxLong) > 22.602 || //westernmost point of Slovakia
-            !parseFloat(values.minLong) ||
-            parseFloat(values.minLong) < 16.830546090033035 || //easternmost point of Slovakia
-            parseFloat(values.maxLong) < parseFloat(values.minLong) || 
-            !parseFloat(values.maxLat) ||
-            parseFloat(values.maxLat) > 49.61895903149497 || //northernmost point of Slovakia
-            !parseFloat(values.minLat) ||
-            parseFloat(values.minLat) < 47.7170790818681 || //southernmost point of Slovakia
-            parseFloat(values.maxLat) < parseFloat(values.minLat)
-            ) {
-                showPopup(`Error. Check: format(DD), coords within Slovakia, is max > min?`);
-                return;
-        };
+        if (!parseFloat(values.maxLong) || parseFloat(values.maxLong) > 22.602) { //westernmost point of Slovakia
+            return showPopup(`maxLong ${values.maxLong} is not in Slovakia`);
+        }
+
+        if (!parseFloat(values.minLong) || parseFloat(values.minLong) < 16.830546090033035) { //easternmost point of Slovakia
+                return showPopup(`minLong ${values.minLong} is not in Slovakia`)
+            }
+
+        if (!parseFloat(values.maxLat) || parseFloat(values.maxLat) > 49.61895903149497) { //northernmost point of Slovakia
+            return showPopup(`maxLat ${values.maxLat} is not in Slovakia`);
+        }
+
+        if (!parseFloat(values.minLat) || parseFloat(values.minLat) < 47.7170790818681) { //southernmost point of Slovakia
+            return showPopup(`minLat ${values.minLat} is not in Slovakia`);
+        }
 
         createLocation(values)
             .then(data => {
