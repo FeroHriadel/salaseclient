@@ -61,7 +61,10 @@ const HutsSearch = ({ showPopup, values, setValues }) => {
 
 
     //FORM
-      //form values
+      //form shown?
+      const [searchShown, setSearchShown] = useState(false);
+
+      //form fields values
     const [formValues, setFormValues] = useState({
         huts: [],
         loading: true,
@@ -92,35 +95,36 @@ const HutsSearch = ({ showPopup, values, setValues }) => {
     return (
         <div className='huts-search-container'>
             <p>
-                <FontAwesomeIcon icon={faSearch} className='icon'/>
+                <FontAwesomeIcon icon={faSearch} className='icon' onClick={() => setSearchShown(!searchShown)}/>
             </p>
 
             {
                 types.length > 0 && locations.length > 0 
                 ?
-                    <form onSubmit={handleSubmit}>
-                        <input type="text" name='searchword' placeholder='search by keyword' onChange={handleChange} />
+                    <form
+                         onSubmit={handleSubmit}
+                         style={searchShown ? {width: '100%', height: '150px'} : {width: '0%', height: '0px'}}
+                    >
+                        <input type="text" name='searchword' placeholder='Search by keyword' onChange={handleChange} />
                         
                         <select name="location" onChange={handleChange}>
-                            <option value="">all locations</option>
+                            <option value="">All locations</option>
                             {locations.map(location => (
                                 <option key={location._id} value={location._id}>{location.name}</option>
                             ))}
                         </select>
 
                         <select name="type" onChange={handleChange}>
-                            <option value="">all types</option>
+                            <option value="">All types</option>
                             {types.map(type => (
                                 <option key={type._id} value={type._id}>{type.name}</option>
                             ))}
                         </select>
 
-                        <input type="addedby" name='addedby' placeholder='search by user email' onChange={handleChange}/>
-
                         <select name="sortby" onChange={handleChange}>
-                            <option value="">oldest to latest</option>
-                            <option value="recent">latest to oldest</option>
-                            <option value="alphabetically">alphabetically</option>
+                            <option value="">Oldest to Latest</option>
+                            <option value="recent">Latest to Oldest</option>
+                            <option value="alphabetically">Alphabetically</option>
                         </select>
 
                         <button type="submit">Search</button>

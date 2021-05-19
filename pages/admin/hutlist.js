@@ -218,7 +218,11 @@ const hutlist = () => {
                                 className='list-wrapper'
                                 onScroll={loadMore}
                             >
-                                <HutsSearch values={values} setValues={setValues} showPopup={showPopup} />
+                                <HutsSearch 
+                                    values={values} 
+                                    setValues={setValues} 
+                                    showPopup={showPopup}
+                                />
                                 {showHuts()}
                             </div>
                         </div>
