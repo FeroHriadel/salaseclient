@@ -191,10 +191,16 @@ const hutlist = () => {
                     return;
                 }
 
-               setValues({...data, huts: [...huts, ...data.huts]});
+               setValues({...values, ...data, huts: [...huts, ...data.huts]});
             });
         }        
     }
+
+
+
+    useEffect(() => {
+        console.table(values);
+    }, [values]);
 
     
 

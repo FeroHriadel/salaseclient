@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { getLocations } from '../actions/locationActions';
 import { getTypes } from '../actions/typeActions';
+import { searchHuts } from '../actions/hutActions';
 
 
 
@@ -39,11 +40,50 @@ const HutsSearch = ({ showPopup, values, setValues }) => {
 
 
 
+    //API CALL
+    const [canMakeCall, setCanMakeCall] = useState(false);
+
+    useEffect(() => {
+        if (canMakeCall && values.page <= values.numberOfPages) {
+            searchHuts(values.searchword, values.location, values.type, values.addedby, values.sortby, values.page + 1)
+                .then(data => {
+                    if (data.error) {
+                        showPopup(data.error);
+                        setCanMakeCall(false);
+                    }
+
+                    setValues({...values, ...data, huts: [...values.huts, ...data.huts], loading: false});
+                    setCanMakeCall(false);
+                })
+        }
+    }, [canMakeCall])
+
+
+
     //FORM
+      //form values
+    const [formValues, setFormValues] = useState({
+        huts: [],
+        loading: true,
+        searchword: '',
+        location: '',
+        type: '',
+        addedby: '',
+        sortby: '',
+        page: 0,
+        numberOfPages: 1,
+    });
+      
       //change handler
     const handleChange = e => {
-        setValues({...values, [e.target.name]: e.target.value});
-        console.log(values) //
+        setFormValues({...formValues, [e.target.name]: e.target.value});
+    }
+
+      //submit handler
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setValues(formValues);
+        setCanMakeCall(true);
     }
 
 
@@ -58,7 +98,7 @@ const HutsSearch = ({ showPopup, values, setValues }) => {
             {
                 types.length > 0 && locations.length > 0 
                 ?
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <input type="text" name='searchword' placeholder='search by keyword' onChange={handleChange} />
                         
                         <select name="location" onChange={handleChange}>
@@ -82,6 +122,8 @@ const HutsSearch = ({ showPopup, values, setValues }) => {
                             <option value="recent">latest to oldest</option>
                             <option value="alphabetically">alphabetically</option>
                         </select>
+
+                        <button type="submit">Search</button>
                     </form>
 
                 :
