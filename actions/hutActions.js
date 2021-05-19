@@ -22,3 +22,24 @@ export const addHut = (values) => {
 }
 
 
+
+//SEARCH HUTS
+export const searchHuts = (searchword, location, type, addedby, sortby, page) => {
+    const config = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({searchword, location, type, addedby, sortby, page})
+    };
+
+    return fetch(`${process.env.api}/searchhuts`, config)
+        .then(res => {
+            return res.json();
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+

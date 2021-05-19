@@ -42,7 +42,7 @@ const admin = () => {
                 <Link href='/admin/typelist'>
                     <a>Manage Types</a>
                 </Link>
-                <Link href='/admin/huts'>
+                <Link href='/admin/hutlist'>
                     <a>Manage Huts</a>
                 </Link>
                 <Link href='/admin/users'>
