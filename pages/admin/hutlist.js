@@ -3,7 +3,8 @@ import Router from 'next/router';
 import Header from '../../components/Header';
 import Popup from '../../components/Popup';
 import { isAuth, getCookie } from '../../actions/authActions';
-import { searchHuts } from '../../actions/hutActions';
+import { searchHuts, deleteHut } from '../../actions/hutActions';
+import { deleteLocationImage } from '../../actions/locationActions'; //this is misplaced and misnamed. Deletes image. Ain't changing it.
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -129,7 +130,7 @@ const hutlist = () => {
                                         Router.push({
                                             pathname: '/admin/hutedit',
                                             query: {
-                                                locationId: location._id
+                                                hutId: hut._id
                                             }
                                         })
                                     }}
@@ -140,10 +141,10 @@ const hutlist = () => {
                                     title='Delete' 
                                     onClick={() => {
                                         setShowModal(true);
-                                        // setLocationData({
-                                        //     locationId: location._id,
-                                        //     imageId: location.image.public_id
-                                        // })
+                                        setHutData({
+                                            hutId: hut._id,
+                                            imageId: hut.image.public_id
+                                        })
                                     }}
                                 >
                                     <FontAwesomeIcon icon={faTrash} className='icon'/>
@@ -172,6 +173,31 @@ const hutlist = () => {
 
 
 
+    //DELETE HUT
+    const [hutData, setHutData] = useState({});
+
+    useEffect(() => {
+        if (actionConfirmed) {
+            deleteHut(hutData.hutId)
+                .then(data => {
+                    if (data.error) {
+                        return showPopup(data.error);
+                    }
+
+                    showPopup(`Hut deleted`);
+                })
+                        
+            deleteLocationImage(hutData.imageId);
+            setActionConfirmed(false);
+
+            const remainingHuts = huts.filter(hut => hut._id !== hutData.hutId);
+            setValues({...values, huts: remainingHuts});
+            setHutData({});
+        }
+    }, [actionConfirmed]);
+
+
+
     //LOAD MORE ON SCROLL
     const loadMore = (e) => {
         const totalHeight = e.target.scrollHeight;
@@ -195,12 +221,6 @@ const hutlist = () => {
             });
         }        
     }
-
-
-
-    useEffect(() => {
-        console.table(values);
-    }, [values]);
 
     
 

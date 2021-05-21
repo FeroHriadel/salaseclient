@@ -184,7 +184,7 @@ const locationlist = () => {
             setShowModal={setShowModal} 
             actionConfirmed={actionConfirmed}
             setActionConfirmed={setActionConfirmed}
-            modalText='This will also delete all huts within the Location. Are you sure?'
+            modalText='Huts might be associated with this location. Are you sure?'
         />
         
         </Popup>

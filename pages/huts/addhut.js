@@ -55,7 +55,7 @@ const addhut = () => {
     const [typesLoading, setTypesLoading] = useState(true);
     
     const fetchAllLocations = () => {
-        setLocations(true);
+        setLocationsLoading(true);
         getLocations()
             .then(data => {
                 if (data.error) {
@@ -70,7 +70,7 @@ const addhut = () => {
     };
 
     const fetchAllTypes = () => {
-        setTypes('loading');
+        setTypesLoading(true);
         getTypes()
             .then(data => {
                 if (data.error) {
