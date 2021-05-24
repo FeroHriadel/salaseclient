@@ -5,6 +5,7 @@ import Popup from '../components/Popup';
 import { searchHuts } from '../actions/hutActions';
 import ControlsHutSearch from '../components/ControlsHutSearch';
 import moment from 'moment';
+import Router from 'next/router';
 
 
 
@@ -157,7 +158,7 @@ const controls = () => {
                                 <p>No huts found</p>
                             :
                             huts.map(hut => (
-                                <ul className="item-box" key={hut._id}>
+                                <ul className="item-box" key={hut._id} onClick={() => Router.push(`/huts/${hut._id}`)}>
                                     <div 
                                         className="item-img"
                                         style={{

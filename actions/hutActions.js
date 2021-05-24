@@ -2,6 +2,7 @@ import { getCookie } from './authActions';
 
 
 
+//CREATE HUT
 export const addHut = (values) => {
     const config = {
         method: 'POST',

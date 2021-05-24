@@ -136,10 +136,11 @@
             padding: 15px 5%;
             margin-bottom: 2rem;
             cursor: pointer;
-            transition: all 0.4s linear;
+            transition: all 0.2s linear;
 
             &:hover {
                 filter: drop-shadow(-5px 5px 10px coral);
+                box-shadow: rgba(68, 68, 68, 0.295) 20px -12px 25px 2px inset;
                 transform: scale(1.02);
             }
 

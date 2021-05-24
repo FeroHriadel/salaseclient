@@ -4,6 +4,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { getLocations } from '../actions/locationActions';
 import { getTypes } from '../actions/typeActions';
 import { searchHuts } from '../actions/hutActions';
+import Router from 'next/router';
 
 
 
@@ -120,7 +121,9 @@ const ControlsHutsSearch = ({ showPopup, values, setValues }) => {
                             <option value="alphabetically">Alphabetically</option>
                         </select>
 
-                        <button type="submit">Start Search</button>
+                        <button type="submit" onClick={() => {
+                            Router.push('/controls/#hut-list-section')
+                        }}>Start Search</button>
                     </form>
 
                 :
