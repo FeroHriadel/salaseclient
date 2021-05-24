@@ -10,10 +10,11 @@ import { deleteLocationImage } from '../../actions/locationActions'; //this shou
 import { addHut } from '../../actions/hutActions';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { withRouter } from 'next/router';
 
 
 
-const addhut = () => {
+const addhut = ({ router }) => {
     //REDIRECT AWAY AFTER SIGNOUT
     const [loggedOut, setLoggedOut] = useState(false);
 
@@ -162,7 +163,7 @@ const addhut = () => {
             objectdescription: '',
             water: '',
             warning: '',
-            addedby: ''
+            addedby: isAuth()._id
         });
     };
 
@@ -290,7 +291,7 @@ const addhut = () => {
 
             <div className='addhut-container'>
 
-                <button className="go-back-btn" onClick={() => {Router.push('/controls')}}>
+                <button className="go-back-btn" onClick={() => {Router.push(router.query.redirect)}}>
                     <FontAwesomeIcon icon={faArrowLeft} className='icon'/>
                     {' '}
                     Go Back
@@ -311,4 +312,4 @@ const addhut = () => {
     )
 }
 
-export default addhut
+export default withRouter(addhut)

@@ -1,0 +1,67 @@
+.controls-huts-search-container {
+    
+    form {
+        display: flex;
+
+        & select {
+            -webkit-appearance: none;
+            text-align-last: center;
+
+            option {
+                color: #333;
+            }
+        }
+
+        & > * {
+            color: #ddd;
+            font-family: Fondamento, cursive;
+            font-size: 1.25rem;
+            background: 0;
+            padding: 0;
+            margin: 0;
+            border: 0;
+            outline: 0;
+            cursor: pointer;
+            transition: all 0.3s linear;
+            width: 175px;
+            text-align: center;
+            text-shadow: -1px 1px 2px black;
+        }
+
+        & > *:hover:not(button) {
+            color: coral;
+        }
+
+        & > *:not(button) {
+            margin-right: 1rem;
+        }
+
+        & button {
+            color: coral;
+        }
+
+        & button:active {
+            transform: scale(0.8);
+        }
+
+        & button:hover {
+            color: orangered;
+            text-shadow: 0 0 7.5px coral;
+        }
+
+        & input::placeholder {
+            color: #ddd;
+            opacity: 1;
+            transition: all 0.3 linear;
+        }
+
+        & input:hover::placeholder {
+            color: white;
+        }
+
+        & input:hover {
+            color: white;
+        }
+    }
+
+}

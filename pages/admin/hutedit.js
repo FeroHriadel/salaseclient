@@ -96,8 +96,6 @@ const hutedit = ({ router }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log(values);
-
         if (!values.name) {
             showPopup(`Name is required`);
             return;

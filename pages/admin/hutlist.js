@@ -108,7 +108,7 @@ const hutlist = () => {
             <div className="title">
                 <h1>Hut List</h1>
 
-                <button title='Add Hut' onClick={() => {Router.push('/admin/hutcreate')}}>
+                <button title='Add Hut' onClick={() => {Router.push('/huts/addhut?redirect=/admin/hutlist')}}>
                     <FontAwesomeIcon icon={faPlus} className='icon'/>
                 </button>
             </div>
