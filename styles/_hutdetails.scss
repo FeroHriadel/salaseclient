@@ -167,6 +167,7 @@ body {
     overflow: hidden;
 
     .wrapper-for-scroll {
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -177,9 +178,9 @@ body {
         height: 90%;
 
         &::-webkit-scrollbar-track {
-            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
+            box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.2);
             margin-right: 5px;
         }
     
@@ -191,6 +192,25 @@ body {
             border-radius: 10px;
             box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
             background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .comments-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #888;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s linear;
+
+            &:hover {
+                color: orangered;
+                text-shadow: 0 0 7.5px rgba(255, 127, 80, 0.644);
+            }
+
+            &:active {
+                transform: scale(0.8);
+            }
         }
     }
 }

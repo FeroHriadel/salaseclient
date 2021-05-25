@@ -1,3 +1,6 @@
+
+/************ styled in _hutdetails.scss ********************/
+
 import React, { useState } from 'react';
 import Router from 'next/router';
 import Link from 'next/link';
@@ -7,13 +10,20 @@ import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 import { faLaptop } from "@fortawesome/free-solid-svg-icons";
 import { faMapSigns } from "@fortawesome/free-solid-svg-icons";
+import { faComments } from "@fortawesome/free-solid-svg-icons";
 import HutMapModal from '../../components/HutMapModal';
+import CommentsModal from '../../components/CommentsModal'
 
 
 
 const hutdetails = ({ hut, error }) => {
-    //MODAL
+    //MAP MODAL
     const [modalShown, setModalShown] = useState(false);
+
+
+
+    //COMMENTS
+    const [commentsShown, setCommentsShown] = useState(false);
 
 
 
@@ -70,6 +80,13 @@ const hutdetails = ({ hut, error }) => {
                 <div className="card">
                     <div className="back">
                         <div className="wrapper-for-scroll">
+                            <FontAwesomeIcon 
+                                icon={faComments} 
+                                className='comments-icon'
+                                title='Show Comments' 
+                                onClick={() => {
+                                setCommentsShown(true);
+                            }} />
                             <p style={{fontSize: '2rem'}}>{hut.name}</p>
                             <br />
                             <p>Type: <br /> <span>{hut.type.name}</span></p>
@@ -111,6 +128,12 @@ const hutdetails = ({ hut, error }) => {
             />
         }
 
+        {
+            commentsShown
+            &&
+            <CommentsModal setCommentsShown={setCommentsShown} hut={hut} />
+        }
+
     </React.Fragment>
     )
 }
@@ -121,7 +144,7 @@ hutdetails.getInitialProps = ({ query }) => {
     return getHutById(query.hutId)
         .then(data => {
             if (data.error) {
-                return {hut: null, error: data.error}
+                return {hut: null, error: data.error || 'Something went wrong in [hutId] getInitialProps'}
             }
 
             return {hut: data, error: null};
