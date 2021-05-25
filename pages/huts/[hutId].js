@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Router from 'next/router';
 import Link from 'next/link';
 import { getHutById } from '../../actions/hutActions';
@@ -7,16 +7,24 @@ import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 import { faLaptop } from "@fortawesome/free-solid-svg-icons";
 import { faMapSigns } from "@fortawesome/free-solid-svg-icons";
+import HutMapModal from '../../components/HutMapModal';
 
 
 
 const hutdetails = ({ hut, error }) => {
-    return (
+    //MODAL
+    const [modalShown, setModalShown] = useState(false);
 
-        <div class="hut-details-container">
+
+
+    //RENDER
+    return (
+    <React.Fragment>
+
+        <div className="hut-details-container">
 
             <nav>
-                <img src="/images/logo.png" class="logo" />
+                <img src="/images/logo.png" className="logo" />
 
                 {error 
                     ? 
@@ -38,7 +46,7 @@ const hutdetails = ({ hut, error }) => {
                     ''
                 }
 
-                <ul class="navigation">
+                <ul className="navigation">
                     <li> <a href="list.html">Zoznam Salašov</a></li>
                     <li>
                         <FontAwesomeIcon icon={faQuestion} className='icon' />{' '}
@@ -58,24 +66,28 @@ const hutdetails = ({ hut, error }) => {
             {error ?
             ''
             :
-            <div class="card-container">        
-                <div class="card">
-                    <div class="back">
+            <div className="card-container">        
+                <div className="card">
+                    <div className="back">
                         <div className="wrapper-for-scroll">
                             <p style={{fontSize: '2rem'}}>{hut.name}</p>
                             <br />
-                            <p>Type: <span>{hut.type.name}</span></p>
-                            <p>Mountain Range: <span>{hut.location.name}</span></p>
-                            <p>GPS: <span>Lat: {hut.latitude}; Long: {hut.longitude}</span></p>
-                            {hut.where && <p>Where: <span>{hut.where}</span></p>}
-                            {hut.objectdescription && <p>Description: <span>{hut.objectdescription}</span></p>}
-                            {hut.water && <p>Water: <span>{hut.water}</span></p>}
-                            {hut.warning && <p>Warning: <span>{hut.warning}</span></p>}
-                            <p>Added by: <span>{hut.addedby.email.split('@')[0]}</span></p>
-                            <button>GPS</button>
+                            <p>Type: <br /> <span>{hut.type.name}</span></p>
+                            <p>Mountain Range: <br /> <span>{hut.location.name}</span></p>
+                            <p>GPS: <br /> <span>Lat: {hut.latitude} <br /> Long: {hut.longitude}</span></p>
+                            {hut.where ? <p>Where: <br /> <span>{hut.where}</span></p> : <p>Where: <br /> <span>No location description provided</span></p>}
+                            {hut.objectdescription ? <p>Description: <br /> <span>{hut.objectdescription}</span></p> : <p>Description: <br /> <span>No hut description provided</span></p>}
+                            {hut.water ? <p>Water: <br /> <span>{hut.water}</span></p> : <p>Water Source: <br /> <span>Unknown</span></p>}
+                            {hut.warning ? <p>Warning: <br /> <span>{hut.warning}</span></p> : <p>Warning: <br /> <span>No warning given for this hut</span></p>}
+                            <p>Added by: <br /> <span>{hut.addedby.email.split('@')[0]}</span></p>
+                            <p className='button' onClick={() => setModalShown(true)}>
+                                Show on Map
+                                {' '}
+                                <FontAwesomeIcon icon={faMapSigns} style={{color: "orangered"}}/>
+                            </p>
                         </div>
                     </div>
-                    <div class="front" style={{background: `url(${hut.image.url}) no-repeat center center/cover`}}>
+                    <div className="front" style={{background: `url(${hut.image.url}) no-repeat center center/cover`}}>
                         <p>
                             details
                             {' '}
@@ -87,6 +99,19 @@ const hutdetails = ({ hut, error }) => {
             }
 
         </div>
+
+
+        {
+            modalShown 
+            && 
+            <HutMapModal 
+                latitude={hut.latitude} 
+                longitude={hut.longitude} 
+                setModalShown={setModalShown}
+            />
+        }
+
+    </React.Fragment>
     )
 }
 
