@@ -4,13 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { signup, signin, authenticate, isAuth } from '../actions/authActions';
 import Router from 'next/router';
+import { withRouter } from 'next/router';
 
 
 
-const signinpage = () => {
+const signinpage = ({ router }) => {
     //REDIRECT LOGGED-IN USER
     useEffect(() => {
-        isAuth() && Router.push('/controls');
+        isAuth() && Router.push(router.query.redirect ? router.query.redirect : '/controls');
     }, [])
 
 
@@ -63,7 +64,7 @@ const signinpage = () => {
                     setMessage('Signed up. Redirecting...')
                     setTimeout(() => {
                         setMessage('')
-                        Router.push('/controls')
+                        Router.push(router.query.redirect ? router.query.redirect : '/controls')
                     }, 3000)
                 })
             })
@@ -96,7 +97,7 @@ const signinpage = () => {
                     setMessage('Logged in. Redirecting...');
                     setTimeout(() => {
                         setMessage('')
-                        Router.push('/controls')
+                        Router.push(router.query.redirect ? router.query.redirect : '/controls')
                     }, 3000)
                 })
             })
@@ -164,4 +165,4 @@ const signinpage = () => {
     )
 }
 
-export default signinpage
+export default withRouter(signinpage)
