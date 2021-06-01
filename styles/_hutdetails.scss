@@ -191,7 +191,7 @@ body {
         &::-webkit-scrollbar-thumb {
             border-radius: 10px;
             box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
-            background-color: rgba(0, 0, 0, 0.3);
+            background-color: rgba(192, 192, 192, 0.747);
         }
 
         .comments-icon {
@@ -204,8 +204,7 @@ body {
             transition: color 0.3s linear;
 
             &:hover {
-                color: orangered;
-                text-shadow: 0 0 7.5px rgba(255, 127, 80, 0.644);
+                color: #666;
             }
 
             &:active {
@@ -219,8 +218,8 @@ body {
     color: orangered;
     font-family: 'Fondamento', cursive;
     font-size: 1.2rem;
-    margin-bottom: 1rem;
     margin-right: 10px;
+    margin-bottom: 0.25rem;
 }
 
 .hut-details-container .back span {

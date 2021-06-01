@@ -2,7 +2,7 @@ import { getCookie } from './authActions';
 
 
 
-//GET COMMENTS BY HUTID + PAGE
+//GET COMMENTS BY HUTID + PAGINATION
 export const getComments = (hutid, page) => {
     const config = {
         method: 'POST',
@@ -49,3 +49,23 @@ export const addComment = (values) => {
 export const deleteImage = (public_id) => {
     return fetch(`${process.env.api}/removecommentimage/${public_id}`, {method: 'DELETE'});
 };
+
+
+
+//DELETE COMMENT
+export const deleteComment = (commentId) => {
+    const config = {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${getCookie('token')}`
+        }
+    };
+
+    return fetch(`${process.env.api}/deletecomment/${commentId}`, config)
+        .then(res => {
+            return res.json();
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}

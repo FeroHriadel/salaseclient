@@ -1,0 +1,82 @@
+.map-page-container {
+    width: 100%;
+    min-height: calc(100vh - 80px); /*80px = <Header/> height*/
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: linear-gradient(to top, #675A29 60%, #413B24);
+    padding-top: 3rem;
+
+    .buttons-container {
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        margin-right: 2rem;
+
+        .button {
+            width: 280px;
+            height: 3rem;
+            background: rgba(100, 99, 94, 0.5);
+            border-radius: 5px;
+            text-align: center;
+            font-family: 'Fondamento', cursive;
+            font-size: 1.5rem;
+            line-height: 3rem;
+            color: #eee;
+            text-decoration: none;
+            transition: all 0.2s linear;
+            box-shadow: -2px 2px 5px #333;
+            cursor: pointer;
+
+            &:not(:nth-child(1)) {
+                margin-top: 1rem;
+            }
+    
+            &:hover {
+                box-shadow: coral 0 0 10px;
+                transform: scale(1.02);
+                color: white;
+                text-shadow: 0 0 5px #eee;
+            }
+
+            .icon {
+                font-size: 1rem;
+                margin-right: 1rem;
+            }
+        }
+    }
+
+    .map-container {
+        width: 600px;
+        height: 550px;
+        background: #333;
+        box-shadow: 0px 0px 20px black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+
+        .hut-details-box {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: rgba(0, 0, 0, 0.753);
+            border-radius: 10px;
+            box-shadow: -2.5px 2px 5px #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .hut-info {
+                margin-left: 1rem;
+
+                p {
+                    color: #ddd;
+                }
+            }
+            
+        }
+    }
+}

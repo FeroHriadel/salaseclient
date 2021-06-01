@@ -33,7 +33,7 @@
         width: 100%;
         height: 100%;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
 
         .search-container, .edit-container {
@@ -176,4 +176,24 @@
             }
         }
     }
+}
+
+
+
+/*GALLERY*/
+.controls-container #gallery-section {
+    position: relative;
+    background-attachment: fixed;
+    width: 100%;
+    height: 70vh;
+    background-image: url('../public/images/osnicazrozsutca.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px black inset;
+    border-bottom: coral 2px solid;
+    border-top: coral 2px solid;
 }

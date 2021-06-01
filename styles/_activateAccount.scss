@@ -1,0 +1,56 @@
+.activate-account-screen {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url('../public/images/mainbg.jpg') no-repeat center center/cover;
+    overflow: hidden;
+    position: relative;
+
+    h2 {
+        font-size: 2rem;
+        text-align: center;
+        font-family: Fondamento, cursive;
+        color: #ddd;
+        text-shadow: 1px 1px 3px #222;
+        margin-bottom: 2rem;
+    }
+
+    h3 {
+        text-align: center;
+        font-family: Fondamento, cursive;
+        color: orangered;
+        text-shadow: 1px 1px 3px #222;
+        margin-bottom: 2rem;
+    }
+
+    button {
+        width: 200px;
+        height: 2.5rem;
+        background: rgba(100, 99, 94, 0.5);
+        border-radius: 5px;
+        border: 0;
+        outline: 0;
+        text-align: center;
+        font-family: 'Fondamento', cursive;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        color: white;
+        text-decoration: none;
+        transition: all 0.2s linear;
+        cursor: pointer;
+        box-shadow: -2.5px 2.5px 5px #444;
+
+        &:hover {
+            box-shadow: coral 0 0 10px;
+            color: coral;
+            transform: scale(1.02);
+        }
+
+        &:active {
+            transform: scale(0.9);
+        }
+    }
+}

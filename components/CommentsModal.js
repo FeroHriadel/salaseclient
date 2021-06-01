@@ -5,12 +5,43 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import moment from 'moment';
 import { isAuth, getCookie } from '../actions/authActions';
 import { addComment } from '../actions/commentActions';
+import { deleteImage, deleteComment } from '../actions/commentActions';
 import Router from 'next/router';
 import CommentImageUpload from '../components/CommentImageUpload';
+import ConfirmModal from './ConfirmModal';
 
 
 
 const CommentsModal = ({ hut, setCommentsShown }) => {
+    //DELETE COMMENT & DELETE CONFIRM MODAL
+    const [showModal, setShowModal] = useState(false);
+    const [actionConfirmed, setActionConfirmed] = useState(false);
+    const [commentData, setCommentData] = useState({});
+
+    useEffect(() => {
+        if (actionConfirmed) {
+            deleteComment(commentData.commentId)
+                .then(data => {
+                    if (data.error) {
+                        console.log(data.error); /////////////////////////////
+                    }
+
+                    console.log(`Comment deleted`); ////////////////////
+                })
+            
+            if (commentData && commentData.imageId) {
+                deleteImage(commentData.imageId);
+            }
+
+            setActionConfirmed(false);
+
+            const remainingComments = values.comments.filter(comment => comment._id !== commentData.commentId);
+            setValues({...values, comments: remainingComments});
+            setCommentData({});
+        }
+    }, [actionConfirmed]);
+
+
     //GET COMMENTS - INITIAL LOAD
     const [values, setValues] = useState({loading: true, error: null});
 
@@ -57,6 +88,8 @@ const CommentsModal = ({ hut, setCommentsShown }) => {
 
 
 
+
+
     //ADD COMMENT FORM
       //show-form switch
     const [formShown, setFormShown] = useState(false);
@@ -80,6 +113,7 @@ const CommentsModal = ({ hut, setCommentsShown }) => {
         text: '',
         image: null
     });
+
 
       //submit handler
     const submitHandler = (e) => {
@@ -108,7 +142,7 @@ const CommentsModal = ({ hut, setCommentsShown }) => {
                 }
 
                 setFormValues({
-                    formSubmitted: true, //in case user uploads an image but doesn't submit form => so image can be deleted
+                    formSubmitted: true,
                     hutid: hut._id,
                     user: isAuth() ? isAuth()._id : null,
                     text: '',
@@ -122,6 +156,21 @@ const CommentsModal = ({ hut, setCommentsShown }) => {
                 showMessage(`Something went wrong (CommentsModal.js/submitHandler)`);
             })
       }
+
+
+      //delete Cloudinary img if form not submitted and user navigates away
+    const removeUnsubmittedImg = () => {
+        if (!formValues.formSubmitted && formValues.image.public_id) {
+            deleteImage(formValues.image.public_id);
+        }
+    }
+
+    useEffect(() => {
+        Router.events.on('routeChangeStart', removeUnsubmittedImg);
+        return () => {
+            Router.events.off('routeChangeStart', removeUnsubmittedImg);
+        }
+    }, [formValues]);
 
       //form html
     const addCommentForm = () => (
@@ -138,7 +187,7 @@ const CommentsModal = ({ hut, setCommentsShown }) => {
 
                         <textarea 
                             className='textarea' 
-                            style={formShown ? {height: '150px', width: '100%', padding: '40px 15px 15px 15px'} : {height: '0px', width: '0%', padding: '0px'}}
+                            style={formShown ? {height: '200px', width: '100%', padding: '45px 15px 15px 15px'} : {height: '0px', width: '0%', padding: '0px'}}
                             placeholder='Please type your comment here...'
                             name='text'
                             value={formValues.text}
@@ -155,11 +204,13 @@ const CommentsModal = ({ hut, setCommentsShown }) => {
                             }
                         </button>
 
-                        <CommentImageUpload formValues={formValues} setFormValues={setFormValues} formShown={formShown} />
+                        <CommentImageUpload formValues={formValues} setFormValues={setFormValues} formShown={formShown} showMessage={showMessage} />
 
                     </form>
                 </div>            
     );
+
+
 
 
 
@@ -168,7 +219,7 @@ const CommentsModal = ({ hut, setCommentsShown }) => {
             values.error
             ?
                 <div className="error-message">
-                    <p className="close-comments-btn" onClick={() => {setCommentsShown(false)}}>Close</p>
+                    <p className="close-comments-btn" onClick={() => {setCommentsShown(false);}}>Close</p>
                     <h2>Comments could not be loaded</h2>
                     {values.error && <p>{values.error}</p>}
                 </div>
@@ -180,7 +231,12 @@ const CommentsModal = ({ hut, setCommentsShown }) => {
                 </div>
             :
                 <div className="comments-wrapper">
-                    <p className="close-comments-btn" onClick={() => {setCommentsShown(false)}}>Close</p>
+                    <p className="close-comments-btn" onClick={() => {
+                        if (formValues.image && formValues.image.public_id) {
+                            removeUnsubmittedImg(); //remove unsubmitted Cloudinary img on modal close
+                        }
+                        setCommentsShown(false);
+                    }}>Close</p>
                     <div className="wrapper-for-scroll" onScroll={loadMore}>
 
                         {addCommentForm()}
@@ -205,11 +261,26 @@ const CommentsModal = ({ hut, setCommentsShown }) => {
                                         <span>{moment(comment.createdAt).fromNow()}</span>
                                     </p>
                                     <p>{comment.text}</p>
-                                    <FontAwesomeIcon 
-                                        icon={faTimes} 
-                                        className='delete-btn' 
-                                        title='Remove this comment'
-                                    />
+
+                                    {
+                                        isAuth && isAuth().role === 'admin'
+                                        ?
+                                        <FontAwesomeIcon 
+                                            icon={faTimes} 
+                                            className='delete-btn' 
+                                            title='Remove this comment'
+                                            onClick={() => {
+                                                setShowModal(true);
+                                                if (comment.image && comment.image.public_id) {
+                                                    setCommentData({commentId: comment._id, imageId: comment.image.public_id});
+                                                } else {
+                                                    setCommentData({commentId: comment._id});
+                                                }
+                                            }}
+                                        />
+                                        :
+                                        ''
+                                    }
                                 </div>
                             ))
                         }
@@ -222,8 +293,18 @@ const CommentsModal = ({ hut, setCommentsShown }) => {
 
     //RENDER
     return (
-        <div className='comments-modal' >
+        <div className='comments-modal'>
+
             {showComments()}
+
+            <ConfirmModal 
+                showModal={showModal} 
+                setShowModal={setShowModal} 
+                actionConfirmed={actionConfirmed}
+                setActionConfirmed={setActionConfirmed}
+                modalText='Delete Comment?'
+            />
+
         </div>
 
     )

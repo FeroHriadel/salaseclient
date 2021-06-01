@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { signup, signin, authenticate, isAuth } from '../actions/authActions';
+import { presignup, signup, signin, authenticate, isAuth } from '../actions/authActions';
 import Router from 'next/router';
 import { withRouter } from 'next/router';
 
@@ -39,9 +39,10 @@ const signinpage = ({ router }) => {
 
 
 
-    //SIGNUP WITH EMAIL & PASSWORD
+    //SIGNUP
     const [signupValues, setSignupValues] = useState({signupEmail: '', signupPassword: ''});
     const { signupEmail, signupPassword} = signupValues;
+    const [blockSubmit, setBlocSubmit] = useState(false);
 
     const signupChangeHandler = (e) => {
         setMessage('');
@@ -54,20 +55,15 @@ const signinpage = ({ router }) => {
             return setMessage('Email and Password are required')
         }
         
-        signup(signupEmail, signupPassword)
+        presignup(signupEmail, signupPassword)
             .then(data => {
                 if (data.error) {
                     return setMessage(data.error)
                 }
 
-                authenticate(data, () => {
-                    setMessage('Signed up. Redirecting...')
-                    setTimeout(() => {
-                        setMessage('')
-                        Router.push(router.query.redirect ? router.query.redirect : '/controls')
-                    }, 3000)
-                })
-            })
+                setMessage(data.message);
+                setBlocSubmit(true);
+            });
     }
 
 
@@ -98,7 +94,7 @@ const signinpage = ({ router }) => {
                     setTimeout(() => {
                         setMessage('')
                         Router.push(router.query.redirect ? router.query.redirect : '/controls')
-                    }, 3000)
+                    }, 2000);
                 })
             })
     }
@@ -132,9 +128,11 @@ const signinpage = ({ router }) => {
                                     <p>Password: </p>
                                     <input type="password" name='signupPassword' value={signupPassword} onChange={signupChangeHandler} placeholder='Please enter a password'/>
                                 </div>
-                                <button type='submit'>Sign Up</button>
+                                <button type='submit' disabled={blockSubmit}>Sign Up</button>
                             </form>
                         </div>
+
+
 
             {/*********************************CARD FRONT => SIGNIN *******************************/}
                         <div className='front' style={frontCardStyle}>
@@ -154,6 +152,7 @@ const signinpage = ({ router }) => {
                                     setMessage('');
                                     flipCard();
                                 }}>Sign up</span></p>
+                                <p className='forgot-password-btn'>I <span onClick={() => Router.push('/forgotpassword')}>forgot</span> my password</p>
                             </form>
                         </div>
 

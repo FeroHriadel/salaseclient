@@ -87,16 +87,15 @@ const hutdetails = ({ hut, error }) => {
                                 onClick={() => {
                                 setCommentsShown(true);
                             }} />
-                            <p style={{fontSize: '2rem'}}>{hut.name}</p>
-                            <br />
-                            <p>Type: <br /> <span>{hut.type.name}</span></p>
-                            <p>Mountain Range: <br /> <span>{hut.location.name}</span></p>
-                            <p>GPS: <br /> <span>Lat: {hut.latitude} <br /> Long: {hut.longitude}</span></p>
-                            {hut.where ? <p>Where: <br /> <span>{hut.where}</span></p> : <p>Where: <br /> <span>No location description provided</span></p>}
-                            {hut.objectdescription ? <p>Description: <br /> <span>{hut.objectdescription}</span></p> : <p>Description: <br /> <span>No hut description provided</span></p>}
-                            {hut.water ? <p>Water: <br /> <span>{hut.water}</span></p> : <p>Water Source: <br /> <span>Unknown</span></p>}
-                            {hut.warning ? <p>Warning: <br /> <span>{hut.warning}</span></p> : <p>Warning: <br /> <span>No warning given for this hut</span></p>}
-                            <p>Added by: <br /> <span>{hut.addedby.email.split('@')[0]}</span></p>
+                            <p style={{marginTop: '2rem'}}>Name: <span>{hut.name}</span></p>
+                            <p>Type: <span>{hut.type.name}</span></p>
+                            <p>Mountain Range: <span>{hut.location.name}</span></p>
+                            <p>GPS: <span>Lat: {hut.latitude} & Long: {hut.longitude}</span></p>
+                            {hut.where ? <p>Where: <span>{hut.where}</span></p> : <p>Where: <span>No location description provided</span></p>}
+                            {hut.objectdescription ? <p>Description: <span>{hut.objectdescription}</span></p> : <p>Description: <span>No hut description provided</span></p>}
+                            {hut.water ? <p>Water: <span>{hut.water}</span></p> : <p>Water Source: <span>Unknown</span></p>}
+                            {hut.warning ? <p>Warning: <span>{hut.warning}</span></p> : <p>Warning: <span>No warning given for this hut</span></p>}
+                            <p>Added by: <span>{hut.addedby.email.split('@')[0]}</span></p>
                             <p className='button' onClick={() => setModalShown(true)}>
                                 Show on Map
                                 {' '}

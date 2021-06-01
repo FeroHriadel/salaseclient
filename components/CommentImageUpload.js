@@ -8,12 +8,12 @@ import { faUpload } from "@fortawesome/free-solid-svg-icons";
 
 
 
-const CommentImageUpload = ({ formValues, setFormValues, formShown }) => {
+const CommentImageUpload = ({ formValues, setFormValues, formShown, showMessage }) => {
 
     //UPLOAD & RESIZE IMG
     const fileUploadAndResize = (e) => {       
         //resize
-        console.log('uploading file');/////////////
+        showMessage('Uploading file');
         let file = e.target.files[0];
         if (file) {
             Resizer.imageFileResizer(file, 300, 300, 'JPEG', 100, 0, (uri) => {
@@ -26,15 +26,14 @@ const CommentImageUpload = ({ formValues, setFormValues, formShown }) => {
                         deleteImage(formValues.image.public_id);
                     }
 
-                    //put img.url & img.public_id in formValues
-                    setFormValues({...formValues, image: res.data });
-                    console.log(res.data);////////////////
+                    //put img.url & img.public_id in formValues & set form status to not submitted
+                    setFormValues({...formValues, image: res.data, formSubmitted: false});
                 }).catch(err => {
-                    console.log(err);///////////////
+                    console.log(err);
                 })
             }, 'base64');
         } else {
-            console.log(`No image to upload found`);///////////////
+            showMessage(`No image to upload found`);
         }
     }
 
@@ -44,7 +43,9 @@ const CommentImageUpload = ({ formValues, setFormValues, formShown }) => {
     return (
         <div className='file-upload'>
 
-            {formValues.image && <div className='img-preview' style={{background: `url(${formValues.image.url}) no-repeat center center/cover`}} /> }
+            {
+                formValues.image && <div className='img-preview' style={formShown ? {background: `url(${formValues.image.url}) no-repeat center center/cover`} : {background: '0'}} /> 
+            }
 
             <label style={formShown ? {opacity: '1', pointerEvents: 'auto', transition: 'all 0.4s linear', transitionDelay: '0.4s'} : {opacity: '0', pointerEvents: 'none', transition: 'all 0.1s linear', transitionDelay: '0s'}}>
                 Upload Image <FontAwesomeIcon icon={faUpload} className='icon'/>

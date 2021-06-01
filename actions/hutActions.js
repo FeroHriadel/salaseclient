@@ -123,3 +123,16 @@ export const updateHut = (hutId, values) => {
 
 
 
+//GET HUTS BY LOCATION
+export const getHutsByLocation = (locationId) => {
+    return fetch(`${process.env.api}/gethutsbylocation/${locationId}`)
+        .then(res => {
+            return res.json();
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}
+
+
+

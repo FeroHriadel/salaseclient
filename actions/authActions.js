@@ -1,13 +1,36 @@
 import cookie from 'js-cookie';
 
+
+
+//PRE SIGNUP
+export const presignup = (email, password) => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({email, password})
+    };
+
+    return fetch(`${process.env.api}/presingup`, config)
+        .then(res => {
+            return res.json();
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+
+
 //SIGNUP
-export const signup = (email, password) => {
+export const signup = (token) => {
     const config = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({email, password})
+        body: JSON.stringify({token})
     }
 
     return fetch(`${process.env.api}/signup`, config)
@@ -95,6 +118,46 @@ export const signout = () => {
 }
 
 
+
+//FORGOT PASSWORD
+export const forgotPassword = (email) => {
+    const config = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({email})
+    };
+
+    return fetch(`${process.env.api}/forgotpassword`, config)
+        .then(res => {
+            return res.json();
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+
+
+//RESET PASSWORD
+export const resetPassword = (resetPasswordLink, newPassword) => {
+    const config = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({resetPasswordLink, newPassword})
+    }
+
+    return fetch(`${process.env.api}/resetpassword`, config)
+        .then(res => {
+            return res.json();
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
 
 
 

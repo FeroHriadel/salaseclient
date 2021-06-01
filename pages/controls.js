@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Link from 'next/link';
 import Popup from '../components/Popup';
+import { isAuth } from '../actions/authActions';
 import { searchHuts } from '../actions/hutActions';
 import ControlsHutSearch from '../components/ControlsHutSearch';
 import moment from 'moment';
@@ -116,27 +117,27 @@ const controls = () => {
                     <div className="img-container one">
                         <div className="buttons-container">
                             <div className="search-container">
-                                <h2>Search Huts by...</h2>
+                                <h2>Go to...</h2>
                                 <Link href='/'>
-                                    <a>Accessibility</a>
+                                    <a>Gallery</a>
                                 </Link>
                                 <Link href='/'>
-                                    <a>Location</a>
+                                    <a>Locations</a>
                                 </Link>
                                 <Link href='/'>
-                                    <a>Type</a>
+                                    <a>Types</a>
                                 </Link>
                             </div>
 
                             <div className="edit-container">
-                                <h2>Edit Content...</h2>
-                                <Link href='/huts/addhut?redirect=/controls'>
+                                <h2>Huts...</h2>
+                                <Link href={isAuth() ? '/huts/addhut?redirect=/controls' : '/signin?redirect=/controls'}>
                                     <a>Add Hut</a>
                                 </Link>
                                 <Link href='/controls/#hut-list-section'>
                                     <a>Show Huts</a>
                                 </Link>
-                                <Link href='/'>
+                                <Link href='/map'>
                                     <a>Show Map</a>
                                 </Link>
                             </div>
@@ -177,7 +178,10 @@ const controls = () => {
                     </div>
 
                     {showPagination()}
+                </section>
 
+                <section className='section' id="gallery-section">
+                    <div className="img-container-two" />
                 </section>
             </div>
 
