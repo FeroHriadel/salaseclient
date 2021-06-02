@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { presignup, signup, signin, authenticate, isAuth } from '../actions/authActions';
+import { presignup, signup, signin, authenticate, isAuth, getGoogleClientId } from '../actions/authActions';
 import Router from 'next/router';
 import { withRouter } from 'next/router';
+import GoogleButton from '../components/GoogleButton';
 
 
 
@@ -18,6 +19,22 @@ const signinpage = ({ router }) => {
 
     //MESSAGE
     const [message, setMessage] = useState('');
+
+
+
+    //GET GOOGLE CLIENT ID (to show google btn)
+    const [googleClientId, setGoogleClientId] = useState(null);
+
+    useEffect(() => {
+        getGoogleClientId()
+            .then(data => {
+                if (data.error) {
+                    return console.log(data.error)
+                }
+
+                setGoogleClientId(data);
+            });
+    }, []);
 
 
 
@@ -39,7 +56,7 @@ const signinpage = ({ router }) => {
 
 
 
-    //SIGNUP
+    //SIGNUP WiTH EMAIL AND PASSWORD
     const [signupValues, setSignupValues] = useState({signupEmail: '', signupPassword: ''});
     const { signupEmail, signupPassword} = signupValues;
     const [blockSubmit, setBlocSubmit] = useState(false);
@@ -148,10 +165,13 @@ const signinpage = ({ router }) => {
                                     <input type="password" name='signinPassword' value={signinPassword} onChange={signinChangeHandler} placeholder='Please enter your password'/>
                                 </div>
                                 <button type='submit'>Sign In</button>
+
+                                {googleClientId && <GoogleButton googleClientId={googleClientId} setMessage={setMessage}/>}
+
                                 <p className='turn-card-over'>Don't have an account? <span onClick={() => {
                                     setMessage('');
                                     flipCard();
-                                }}>Sign up</span></p>
+                                }}>Sign up</span></p>                             
                                 <p className='forgot-password-btn'>I <span onClick={() => Router.push('/forgotpassword')}>forgot</span> my password</p>
                             </form>
                         </div>

@@ -61,7 +61,6 @@ export const signin = (email, password) => {
 
 
 
-
 //HELPERS
   //set cookie
 export const setCookie = (key, value) => {
@@ -151,6 +150,40 @@ export const resetPassword = (resetPasswordLink, newPassword) => {
     }
 
     return fetch(`${process.env.api}/resetpassword`, config)
+        .then(res => {
+            return res.json();
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+
+
+//GET GOOGLE CLIENT ID FROM BACKEND
+export const getGoogleClientId = () => {
+    return fetch(`${process.env.api}/getgoogleclientid`)
+        .then(res => {
+            return res.json();
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+
+
+//SIGNIN WITH GOOGLE
+export const signinWithGoogle = (user) => {
+    const config = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    };
+
+    return fetch(`${process.env.api}/googlesignin`, config)
         .then(res => {
             return res.json();
         })
