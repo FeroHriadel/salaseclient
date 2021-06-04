@@ -95,7 +95,7 @@ const hutdetails = ({ hut, error }) => {
                             {hut.objectdescription ? <p>Description: <span>{hut.objectdescription}</span></p> : <p>Description: <span>No hut description provided</span></p>}
                             {hut.water ? <p>Water: <span>{hut.water}</span></p> : <p>Water Source: <span>Unknown</span></p>}
                             {hut.warning ? <p>Warning: <span>{hut.warning}</span></p> : <p>Warning: <span>No warning given for this hut</span></p>}
-                            <p>Added by: <span>{hut.addedby.email.split('@')[0]}</span></p>
+                            {hut.addedby && hut.addedby.email && <p>Added by: <span>{hut.addedby.email.split('@')[0]}</span></p>}
                             <p className='button' onClick={() => setModalShown(true)}>
                                 Show on Map
                                 {' '}

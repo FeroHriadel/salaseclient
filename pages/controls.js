@@ -116,10 +116,10 @@ const controls = () => {
                 <section className="section">
                     <div className="img-container one">
                         <div className="buttons-container">
-                            <div className="search-container">
+{/*                         <div className="search-container"> //this is named wrong => it's the first column with buttons
                                 <h2>Go to...</h2>
                                 <Link href='/'>
-                                    <a>Gallery</a>
+                                    <a>xxxx</a>
                                 </Link>
                                 <Link href='/'>
                                     <a>Locations</a>
@@ -128,9 +128,10 @@ const controls = () => {
                                     <a>Types</a>
                                 </Link>
                             </div>
+    */}
 
-                            <div className="edit-container">
-                                <h2>Huts...</h2>
+                            <div className="edit-container"> {/* this is named wrong => it's the 2nd column with buttons */}
+                                <h2>Go to...</h2>
                                 <Link href={isAuth() ? '/huts/addhut?redirect=/controls' : '/signin?redirect=/controls'}>
                                     <a>Add Hut</a>
                                 </Link>
@@ -138,7 +139,7 @@ const controls = () => {
                                     <a>Show Huts</a>
                                 </Link>
                                 <Link href='/map'>
-                                    <a>Show Map</a>
+                                    <a>Map</a>
                                 </Link>
                             </div>
                         </div>
@@ -180,7 +181,7 @@ const controls = () => {
                     {showPagination()}
                 </section>
 
-                <section className='section' id="gallery-section">
+                <section className='section' id="locations-section">
                     <div className="img-container-two" />
                 </section>
             </div>

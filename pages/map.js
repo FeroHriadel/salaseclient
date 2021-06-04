@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Popup from '../components/Popup';
-import { Map, ZoomControl, MouseControl, MarkerLayer, Marker } from 'react-mapycz';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { getLocations } from '../actions/locationActions';
@@ -9,9 +8,16 @@ import { getHutsByLocation } from '../actions/hutActions';
 import Link from 'next/link';
 
 
+import dynamic from "next/dynamic"; //enable importing w/o ssr
+
 
 const map = () => {
-    console.log(Marker)
+    //IMPORT MAP W/O SSR => SO IT HAS ACCESS TO WINDOW
+    const MapWithNoSSR = dynamic(() => import("../components/Map"), {
+        ssr: false
+    });
+
+
 
     //POPUP
     const [popupShown, setIsPopupShown] = useState(false);
@@ -44,9 +50,7 @@ const map = () => {
 
 
     //HUTS
-    const [huts, setHuts] = useState(null);
-
-
+    const [huts, setHuts] = useState(null); //huts get set by onClick (see: RENDER/buttons-container section)
 
     //RENDER
     return (
@@ -55,6 +59,7 @@ const map = () => {
             <Header />
 
             <div className='map-page-container'>
+
                 <ul className="buttons-container">
                     <li className='button'> <FontAwesomeIcon icon={faArrowLeft} className='icon'/> {' '} Go Back </li>
                     {
@@ -78,29 +83,18 @@ const map = () => {
                     }
                 </ul>
 
-                <div className="map-container">
-                    <Map height='100%' center={{lat: 49.020606517888275, lng: 19.603840559810987}} zoom={8}>
-                        <ZoomControl />
-                        <MouseControl zoom={true} pan={true} wheel={true} />
-                        <MarkerLayer>
-                            {
-                                huts && huts.map((hut) => (
-                                    <Marker
-                                        title={hut.name}
-                                        key={hut._id} 
-                                        coords={{lat: hut.latitude, lng: hut.longitude}} 
-                                    />
-                                ))
-                            }
-                        </MarkerLayer>
-                    </Map>
-                </div>
+
+                <main className='map-container'>
+                    <div id="map" style={{width: '100%', height: '100%'}}>
+                        <MapWithNoSSR huts={huts} />
+                    </div>
+                </main>
+            
             </div>
-        
+
         </Popup>
+
     )
 }
-
-
 
 export default map
