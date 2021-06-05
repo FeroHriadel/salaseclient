@@ -61,7 +61,7 @@ const map = () => {
             <div className='map-page-container'>
 
                 <ul className="buttons-container">
-                    <li className='button'> <FontAwesomeIcon icon={faArrowLeft} className='icon'/> {' '} Go Back </li>
+                    <li className='button'> <FontAwesomeIcon icon={faArrowLeft} className='icon' />  Go Back </li>
                     {
                         locations
                         &&

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Popup from '../components/Popup';
 import { isAuth } from '../actions/authActions';
 import { searchHuts } from '../actions/hutActions';
+import { getLocations } from '../actions/locationActions';
 import ControlsHutSearch from '../components/ControlsHutSearch';
 import moment from 'moment';
 import Router from 'next/router';
@@ -70,6 +71,22 @@ const controls = () => {
         initialLoad();
       }, []);
 
+    
+    
+    //GET LOCATIONS
+    const [locations, setLocations] = useState([]);
+
+    useEffect(() => {
+        getLocations()
+            .then(data => {
+                if (data.error) {
+                    return console.log('Locations failed to fetch: ' + data.error)
+                }
+
+                setLocations(data);
+            })
+    }, [])
+
 
 
     //LOAD MORE & PAGINATION
@@ -116,22 +133,22 @@ const controls = () => {
                 <section className="section">
                     <div className="img-container one">
                         <div className="buttons-container">
-{/*                         <div className="search-container"> //this is named wrong => it's the first column with buttons
+                       <div className="search-container"> {/*this is named wrong => it's the first column with buttons*/}
                                 <h2>Go to...</h2>
-                                <Link href='/'>
-                                    <a>xxxx</a>
-                                </Link>
-                                <Link href='/'>
+                                <Link href='/controls/#locations-section'>
                                     <a>Locations</a>
                                 </Link>
-                                <Link href='/'>
-                                    <a>Types</a>
+                                <Link href='/list'>
+                                    <a>Top Picks</a>
+                                </Link>
+                                <Link href='/contact'>
+                                    <a>Contact</a>
                                 </Link>
                             </div>
-    */}
+
 
                             <div className="edit-container"> {/* this is named wrong => it's the 2nd column with buttons */}
-                                <h2>Go to...</h2>
+                                <h2>Huts...</h2>
                                 <Link href={isAuth() ? '/huts/addhut?redirect=/controls' : '/signin?redirect=/controls'}>
                                     <a>Add Hut</a>
                                 </Link>
@@ -181,8 +198,44 @@ const controls = () => {
                     {showPagination()}
                 </section>
 
-                <section className='section' id="locations-section">
+                <section className='section' id="locations-section-img">
                     <div className="img-container-two" />
+                </section>
+
+                <section id='locations-section'>
+                    <img src="/images/logoLocations.png" alt="Hut List"/>
+                    {
+                        locations && locations.length < 1 
+                        ?
+                        <h2>There're currently no locations to show</h2>
+                        :
+                        <React.Fragment>
+                            <h2>Huts in following locations have been mapped so far: </h2>
+
+                            <div className="locations-list-container">
+                                {
+                                    locations.map(location => (
+                                        <div 
+                                            className='location-item'
+                                            key={location._id}
+                                            style={{
+                                                height: '240px',
+                                                width: '240px',
+                                                background: `url(${location.image.url}) no-repeat center center/cover`,
+                                                borderRadius: '10px'
+                                            }}
+                                        >
+                                            <div className="shade" />
+                                            <p>{location.name}</p>
+                                            <Link href={`/locations/${location._id}`}>
+                                                <small>See huts in {location.name}</small>
+                                            </Link>
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </React.Fragment>
+                    }
                 </section>
             </div>
 

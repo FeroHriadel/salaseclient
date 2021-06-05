@@ -1,0 +1,86 @@
+.huts-in-location-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: linear-gradient(to bottom, #675A29, #413B24 50%);
+    position: relative;
+    
+    .map-container {
+        width: 95%;
+        max-width: 1000px;
+        height: 70vh;
+        margin-top: 2rem;
+        box-shadow: -5px 5px 10px #111;
+    }
+
+    .controls-hut-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    width: 95%;
+    max-width: 1000px;
+
+        .item-box {
+            opacity: 0.7;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            list-style-type: none;
+            background: rgb(241, 235, 201);
+            box-shadow: rgba(68, 68, 68, 0.295) 20px -12px 25px 2px inset, black -10px 10px 10px;
+            filter: drop-shadow(rgb(78, 76, 75) 0 0 10px);
+            overflow: hidden;
+            padding: 15px 5%;
+            margin-bottom: 2rem;
+            cursor: pointer;
+            transition: all 0.2s linear;
+
+            &:hover {
+                filter: drop-shadow(-5px 5px 10px coral);
+                box-shadow: rgba(68, 68, 68, 0.295) 20px -12px 25px 2px inset;
+                transform: scale(1.02);
+            }
+
+            .item-img {
+                overflow: hidden;
+                border-radius: 50%;
+            }
+
+            li {
+                font-family: Fondamento, cursive;
+            }
+        }
+    }
+}
+
+
+
+/*go back button*/
+.huts-in-location-container .go-back-btn {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    padding: 0;
+    margin: 0;
+    outline: 0;
+    background: 0;
+    border: 0;
+    font-family: NotoSans;
+    color: #ddd;
+    text-shadow: #444 -1px 1px 5px;
+    cursor: pointer;
+    transition: all 0.4s linear;
+
+    &:hover {
+        color: orangered;
+        text-shadow: coral 0 0 10px;
+        transform: scale(1.1);
+    }
+}
