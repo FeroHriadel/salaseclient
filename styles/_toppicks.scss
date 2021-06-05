@@ -1,0 +1,74 @@
+/*page*/
+.admin-top-picks-screen {
+    width: 100%;
+    min-height: calc(100vh - 80px); /*80px = <Header />'s height*/
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: url('../public/images/mainbg.jpg') no-repeat center center/cover;
+    overflow: hidden;
+    position: relative;
+
+    .card {
+        width: 75%;
+        min-height: 500px;
+        position: relative;
+        opacity: 0.625;
+        padding: 5%;
+        background: rgb(238, 235, 219);
+        box-shadow: #444 25px -25px 100px inset, black -10px 10px 10px;
+        filter: drop-shadow(rgb(78, 76, 75) 0 0 10px);
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+
+        .title {
+            width: 97.5%; /* space between scrollbar and line*/
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+
+            h1 {
+                color: orangered;
+                font-family: 'Fondamento', cursive;
+                font-size: 2rem;
+            }
+
+            button {
+                padding: 2.5px 0;
+                width: 40px;
+                margin-right: 5px;
+                cursor: pointer;
+            }
+        }
+
+        .line {
+            min-height: 3rem;
+            border-bottom: #444 1px dotted;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 97.5%; /* space between scrollbar and line*/
+
+            button {
+                padding: 2.5px 0;
+                width: 40px;
+                margin-right: 5px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+
+
+/*font*/
+.admin-top-picks-screen h2 {
+    color: #444;
+    font-family: 'Fondamento', cursive;
+}
+
+.admin-top-picks-screen p {
+    color: #333;
+    font-family: 'Fondamento', cursive;
+}

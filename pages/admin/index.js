@@ -48,6 +48,9 @@ const admin = () => {
                 <Link href='/admin/users'>
                     <a>Manage Users</a>
                 </Link>
+                <Link href='/admin/toppicks'>
+                    <a>Manage Top Picks</a>
+                </Link>
             </section>
 
         </React.Fragment>

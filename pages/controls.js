@@ -210,7 +210,7 @@ const controls = () => {
                         <h2>There're currently no locations to show</h2>
                         :
                         <React.Fragment>
-                            <h2>Huts in following locations have been mapped so far: </h2>
+                            <h2>Huts in the following locations have been mapped so far: </h2>
 
                             <div className="locations-list-container">
                                 {

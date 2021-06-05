@@ -253,13 +253,24 @@ const CommentsModal = ({ hut, setCommentsShown }) => {
                                         height: '200px',
                                         background: comment.image ? `url(${comment.image.url}) no-repeat center center/cover` : `linear-gradient(to bottom right, rgb(241, 235, 201) 25%, #bbb)`
                                     }} />
+
+
+                                        
                                     <p className='added-by'>
                                         Added by:
                                         {' '} 
-                                        <span>{comment.user.email.split('@')[0]} / </span>
+                                        {
+                                            comment.user && comment.user.email 
+                                            ?
+                                            <span>{comment.user.email.split('@')[0]} / </span>
+                                            :
+                                            <span>deleted user / </span>
+                                        }
                                         {' '}
                                         <span>{moment(comment.createdAt).fromNow()}</span>
                                     </p>
+
+
                                     <p>{comment.text}</p>
 
                                     {

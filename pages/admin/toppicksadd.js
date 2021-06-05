@@ -1,21 +1,31 @@
+
+/*
+    !!!
+
+        HTML CLASSES HERE ARE ALL MISNAMED => I COPIED ALL FILE FROM HUTLIST.JS AND THIS PAGE IS ALSO STYLED BY THE SAME .SCSS THAT STYLES HUTLIST.JS. THAT'S WHY I DIDN'T RENAME THE CLASSES.
+
+    !!!
+*/
+
 import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 import Header from '../../components/Header';
 import Popup from '../../components/Popup';
 import { isAuth, getCookie } from '../../actions/authActions';
-import { searchHuts, deleteHut } from '../../actions/hutActions';
-import { deleteLocationImage } from '../../actions/locationActions'; //this is misplaced and misnamed. Deletes image. Ain't changing it.
+import { searchHuts } from '../../actions/hutActions';
+import { addTopPick } from '../../actions/topPickActions';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import ConfirmModal from '../../components/ConfirmModal';
 import moment from 'moment';
 import HutsSearch from '../../components/HutsSearch';
 
 
 
-const hutlist = () => {
+const toppicksadd = () => {
     //REDIRECT AWAY AFTER SIGNOUT
     const [loggedOut, setLoggedOut] = useState(false);
 
@@ -48,11 +58,6 @@ const hutlist = () => {
         }, 3000);
     }
 
-
-
-    //MODAL
-    const [showModal, setShowModal] = useState(false);
-    const [actionConfirmed, setActionConfirmed] = useState(false);
 
 
 
@@ -106,11 +111,7 @@ const hutlist = () => {
     const showHuts = () => (
         <React.Fragment>
             <div className="title">
-                <h1>Hut List</h1>
-
-                <button title='Add Hut' onClick={() => {Router.push('/huts/addhut?redirect=/admin/hutlist')}}>
-                    <FontAwesomeIcon icon={faPlus} className='icon'/>
-                </button>
+                <h1>Add Hut to Top Picks</h1>
             </div>
 
             {loading ? <p style={{fontFamily: 'Fondamento, cursive'}}>Getting huts...</p> :
@@ -131,29 +132,19 @@ const hutlist = () => {
                             <p className='hut-details'>{moment(hut.updatedAt).fromNow()}</p>
                             <div className='buttons'>
                                 <button 
-                                    title='Edit'
+                                    title='Add hut to Top Picks'
                                     onClick={() => {
-                                        Router.push({
-                                            pathname: '/admin/hutedit',
-                                            query: {
-                                                hutId: hut._id
-                                            }
-                                        })
+                                        addTopPick(hut._id)
+                                            .then(data => {
+                                                if (data.error || !data) {
+                                                    return showPopup(data.error || `Could not add hut to Top Picks`)
+                                                }
+
+                                                showPopup(`Hut added to Top Picks`);
+                                            });
                                     }}
                                 >
-                                    <FontAwesomeIcon icon={faEdit} className='icon'/>
-                                </button>
-                                <button 
-                                    title='Delete' 
-                                    onClick={() => {
-                                        setShowModal(true);
-                                        setHutData({
-                                            hutId: hut._id,
-                                            imageId: hut.image.public_id
-                                        })
-                                    }}
-                                >
-                                    <FontAwesomeIcon icon={faTrash} className='icon'/>
+                                    <FontAwesomeIcon icon={faPlus} className='icon'/>
                                 </button>
                             </div>
                         </div>
@@ -176,31 +167,6 @@ const hutlist = () => {
             }
         </React.Fragment>
     )
-
-
-
-    //DELETE HUT
-    const [hutData, setHutData] = useState({});
-
-    useEffect(() => {
-        if (actionConfirmed) {
-            deleteHut(hutData.hutId)
-                .then(data => {
-                    if (data.error) {
-                        return showPopup(data.error);
-                    }
-
-                    showPopup(`Hut deleted`);
-                })
-                        
-            deleteLocationImage(hutData.imageId);
-            setActionConfirmed(false);
-
-            const remainingHuts = huts.filter(hut => hut._id !== hutData.hutId);
-            setValues({...values, huts: remainingHuts});
-            setHutData({});
-        }
-    }, [actionConfirmed]);
 
 
 
@@ -237,6 +203,16 @@ const hutlist = () => {
             <Header setLoggedOut={setLoggedOut} protectedRoute={true} />
 
             <section className="admin-hut-list-screen">
+
+            <button 
+                className="go-back-btn" 
+                onClick={() => {Router.push('/admin/toppicks')}}
+            >
+                <FontAwesomeIcon icon={faArrowLeft} className='icon'/>
+                {' '}
+                Go Back
+            </button>
+
                 <div className="card-container">        
                     <div className="card">
                         <div className='front'>
@@ -255,17 +231,9 @@ const hutlist = () => {
                     </div>
                 </div>
             </section>
-
-        <ConfirmModal 
-            showModal={showModal} 
-            setShowModal={setShowModal} 
-            actionConfirmed={actionConfirmed}
-            setActionConfirmed={setActionConfirmed}
-            modalText='Are you sure you want to delete this hut?'
-        />
         
         </Popup>
     )
 }
 
-export default hutlist;
+export default toppicksadd;
