@@ -194,6 +194,68 @@ export const signinWithGoogle = (user) => {
 
 
 
+//SEARCH USERS
+export const searchUsers = (searchword, role, sortby, page) => {
+    const config = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${getCookie('token')}`
+        },
+        body: JSON.stringify({searchword, role, sortby, page})
+    };
+
+    return fetch(`${process.env.api}/searchusers`, config)
+        .then(res => {
+            return res.json();
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+
+
+//DELETE USER
+export const deleteUser = (userId) => {
+    const config = {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${getCookie('token')}`
+        }
+    };
+
+    return fetch(`${process.env.api}/deleteuser/${userId}`, config)
+        .then(res => {
+            return res.json();
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+
+
+//CHANGE USER'S ROLE
+export const changeUsersRole = (userId) => {
+    const config = {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${getCookie('token')}`
+        }
+    };
+
+    return fetch(`${process.env.api}/changeusersrole/${userId}`, config)
+        .then(res => {
+            return res.json();
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+
+
 
 
 

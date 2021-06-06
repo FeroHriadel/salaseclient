@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'next/router';
-import { signup } from '../../actions/authActions';
+import { signup, authenticate } from '../../actions/authActions';
+import Router from 'next/router';
 
 
 
@@ -22,8 +23,14 @@ const activateaccount = ({ router }) => {
                     return setMessage(data.error);
                 }
 
-                setMessage(`Thank you for signing up. Signing you in and redirecting to Salase...`);
-                setBlockButton(true);
+                authenticate(data, () => {
+                    setMessage(`Thank you for signing up. Signing you in and redirecting to Salase...`);
+                    setBlockButton(true);
+                    setTimeout(() => {
+                        Router.push('/controls');
+                    }, 2000);
+                });
+
             });
     }
 
