@@ -69,7 +69,7 @@ const toppicks = () => {
     return (
         <Popup popupShown={popupShown} popupText={popupText}>
 
-            <Header />
+            <Header setLoggedOut={setLoggedOut} protectedRoute={true} />
 
             <div className='admin-top-picks-screen'>
 

@@ -187,8 +187,24 @@ const controls = () => {
                                         }} 
                                     />
                                     <li>{hut.name}</li>
-                                    <li>{hut.location.name}</li>
-                                    <li>{hut.type.name}</li>
+                                    <li>
+                                        {
+                                            hut.location && hut.location.name
+                                            ?
+                                            hut.location.name
+                                            :
+                                            'deletd location'
+                                        }
+                                    </li>
+                                    <li>
+                                        {
+                                            hut.type && hut.type.name
+                                            ?
+                                            hut.type.name
+                                            :
+                                            'deleted type'
+                                        }
+                                    </li>
                                     <li>{moment(hut.updatedAt).fromNow()}</li>
                                 </ul>
                             ))

@@ -120,8 +120,20 @@ const toppicksadd = () => {
                 huts.map((hut) => (                      
                         <div className="hut-line" key={hut._id}>
                             <p className='hut-details'>{hut.name}</p>
-                            <p className='hut-details'>{hut.location.name}</p>
-                            <p className='hut-details'>{hut.type.name}</p>
+                            {
+                                hut.location && hut.location.name
+                                ?
+                                <p className='hut-details'>{hut.location.name}</p>
+                                :
+                                <p className='hut-details'>deleted location</p>
+                            }
+                            {
+                                hut.type && hut.type.name
+                                ?
+                                <p className='hut-details'>{hut.type.name}</p>
+                                :
+                                <p className='hut-details'>deleted type</p>
+                            }
                             {
                                 hut.addedby && hut.addedby.email 
                                 ?

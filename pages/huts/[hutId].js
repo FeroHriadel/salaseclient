@@ -88,8 +88,20 @@ const hutdetails = ({ hut, error }) => {
                                 setCommentsShown(true);
                             }} />
                             <p style={{marginTop: '2rem'}}>Name: <span>{hut.name}</span></p>
-                            <p>Type: <span>{hut.type.name}</span></p>
-                            <p>Mountain Range: <span>{hut.location.name}</span></p>
+                            {
+                                hut.type && hut.type.name
+                                ?
+                                <p>Type: <span>{hut.type.name}</span></p>
+                                :
+                                <p>Type: <span>deleted type</span></p>
+                            }
+                            {
+                                hut.location && hut.location.name
+                                ?
+                                <p>Mountain Range: <span>{hut.location.name}</span></p>
+                                :
+                                <p>Mountain Range: <span>deleted mountain range</span></p>
+                            }
                             <p>GPS: <span>Lat: {hut.latitude} & Long: {hut.longitude}</span></p>
                             {hut.where ? <p>Where: <span>{hut.where}</span></p> : <p>Where: <span>No location description provided</span></p>}
                             {hut.objectdescription ? <p>Description: <span>{hut.objectdescription}</span></p> : <p>Description: <span>No hut description provided</span></p>}

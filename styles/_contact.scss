@@ -1,0 +1,193 @@
+/*page*/
+.contact-container {
+    width: 100%;
+    min-height: calc(100vh - 80px); /*80px = <Header />'s height*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('../public/images/mainbg.jpg') no-repeat center center/cover;
+    overflow: hidden;
+    position: relative;
+}
+
+
+
+/*card*/
+.contact-container .card-container {
+    width: 75%;
+    height: 500px;
+    position: relative;
+    opacity: 0.75;
+}
+
+.contact-container .card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) perspective(30cm) rotateY(0deg);
+    border-radius: 10px;
+}
+
+.contact-container .front {
+    width: 100%;
+    height: 100%;
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    transform: translate(-50%, -50%) perspective(30cm) rotateY(0deg);
+    backface-visibility: hidden;
+    transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 10px;
+    background: rgb(238, 235, 219);
+    padding: 5%;
+    box-shadow: #444 25px -25px 100px inset, black -10px 10px 10px;
+    filter: drop-shadow(rgb(78, 76, 75) 0 0 10px);
+    overflow: hidden;
+}
+
+
+
+/*fonts*/
+.contact-container .front h2 {
+    color: orangered;
+    font-family: 'Fondamento', cursive;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.contact-container .front label {
+    color: orangered;
+    /* text-shadow: #222 0px 0px 1px; */
+    font-family: 'Fondamento', cursive;
+}
+
+.contact-container .front p {
+    color: #222;
+    font-family: 'Fondamento', cursive;
+}
+
+
+
+/*form*/
+.contact-container form {
+    width: 95%;
+    height: 90%;
+    /*overflow-y: scroll;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.3);
+        margin-right: 5px;
+    }
+
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        background-color: rgba(0, 0, 0, 0.8);
+    }*/
+
+    .form-group {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-bottom: 10px;
+
+        &:last-child { /* submit button */
+            display: flex;
+             justify-content: center;
+            align-items: center;
+        }
+
+        label {
+            width: 100%;
+        }
+
+        input {
+            background: transparent;
+            outline: 0;
+            border: 0;
+            padding: 0;
+            margin: 0;
+            font-family: 'Fondamento', cursive;
+            font-size: 1rem;
+            cursor: pointer;
+            flex: 1;
+            margin-right: 2rem;
+            width: 100%;
+        }
+
+        textarea {
+            background: 0;
+            outline: 0;
+            padding: 0;
+            margin: 0;
+            margin-right: 2rem;
+            border: 0;
+            font-family: 'Fondamento', cursive;
+            font-size: 1rem;
+            min-width: 100%;
+            min-height: 9rem;
+            cursor: pointer;
+
+            &::-webkit-scrollbar {
+                background: 0;
+                width: 5px;
+            }
+
+            &::-webkit-resizer {
+                background-color: rgba(0, 0, 0, 0.11);
+                border-radius: 50%;
+
+            }
+        }
+
+        button {
+            height: 2rem;
+            margin-top: 2rem;
+            padding-left: 10px;
+            padding-right: 10px;
+            cursor: pointer;
+        }
+    }
+}
+
+
+
+/*go back button*/
+.contact-container .go-back-btn {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    padding: 0;
+    margin: 0;
+    outline: 0;
+    background: 0;
+    border: 0;
+    font-family: NotoSans;
+    color: #ddd;
+    text-shadow: #444 -1px 1px 5px;
+    cursor: pointer;
+    transition: all 0.4s linear;
+
+    &:hover {
+        color: orangered;
+        text-shadow: coral 0 0 10px;
+        transform: scale(1.1);
+    }
+}

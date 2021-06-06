@@ -63,8 +63,8 @@ const Header = ({ setLoggedOut = false, protectedRoute = false }) => {
                     }
                 </li>
                 <li>
-                    <Link href='/profile'>
-                        <a>My Profile</a>
+                    <Link href='/contact'>
+                        <a>Contact</a>
                     </Link>
                 </li>
                 <li>

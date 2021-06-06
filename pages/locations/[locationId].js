@@ -81,7 +81,13 @@ const hutsinlocation = ({ huts, error }) => {
                                 marginBottom: '2rem',
                                 marginTop: '0'
                             }}>
-                                {huts[0].location.name} has {huts.length} mapped objects:
+                                {
+                                    huts[0].location.name 
+                                    ?                               
+                                    huts[0].location.name + ' has ' + huts.length + ' mapped objects: '
+                                    :
+                                    `This location has ${huts.length} mapped objects: `
+                                }
                             </h2>
                             
                             <Link href='/controls/#hut-list-section'>
@@ -111,7 +117,15 @@ const hutsinlocation = ({ huts, error }) => {
                                     />
                                     <li>{hut.name}</li>
                                     <li>{hut.location.name}</li>
-                                    <li>{hut.type.name}</li>
+                                    <li>
+                                        {
+                                            hut.type && hut.type.name
+                                            ?
+                                            hut.type.name
+                                            :
+                                            'deleted type'
+                                        }
+                                    </li>
                                     <li>{moment(hut.updatedAt).fromNow()}</li>
                                 </ul>
                                 ))
