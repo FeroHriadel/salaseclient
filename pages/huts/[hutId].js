@@ -1,12 +1,14 @@
 
 /************ styled in _hutdetails.scss ********************/
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 import Link from 'next/link';
 import { getHutById } from '../../actions/hutActions';
+import { getNumberOfComments } from '../../actions/commentActions';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import { faScroll } from "@fortawesome/free-solid-svg-icons";
 import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 import { faLaptop } from "@fortawesome/free-solid-svg-icons";
 import { faMapSigns } from "@fortawesome/free-solid-svg-icons";
@@ -23,7 +25,25 @@ const hutdetails = ({ hut, error }) => {
 
 
     //COMMENTS
+      //state
     const [commentsShown, setCommentsShown] = useState(false);
+    const [numberOfComments, setNumberOfComments] = useState(0);
+    const [reloadNumberOfComments, setReloadNumberOfComments] = useState(true);
+
+      //get number of comments
+    useEffect(() => {
+        if (reloadNumberOfComments) {
+            getNumberOfComments(hut._id)
+            .then(data => {
+                if (data.error || !data) {
+                    return console.log(data.error || `getNumberOfComments returned no data`);
+                }
+
+                setNumberOfComments(data);
+                setReloadNumberOfComments(false);
+            })
+        }
+    }, [reloadNumberOfComments]);
 
 
 
@@ -57,7 +77,10 @@ const hutdetails = ({ hut, error }) => {
                 }
 
                 <ul className="navigation">
-                    <li> <a href="list.html">Zoznam Salašov</a></li>
+                    <li>
+                        <FontAwesomeIcon icon={faScroll} className='icon' />{' '}
+                        <Link href='/list'><a>Hut List</a></Link>
+                    </li>
                     <li>
                         <FontAwesomeIcon icon={faQuestion} className='icon' />{' '}
                         <Link href='/about'><a>About</a></Link>
@@ -87,7 +110,29 @@ const hutdetails = ({ hut, error }) => {
                                 onClick={() => {
                                 setCommentsShown(true);
                             }} />
-                            <p style={{marginTop: '2rem'}}>Name: <span>{hut.name}</span></p>
+
+                            <p 
+                                className='number-of-comments'
+                                style={{
+                                    position: 'absolute',
+                                    top: '10px',
+                                    right: '10px',
+                                    color: '#ddd',
+                                    fontWeight: 'bold',
+                                    fontSize: '1.25rem',
+                                    textShadow: '0px 0px 2px black',
+                                    cursor: 'pointer',
+                                    fontFamily: 'MateSC',
+                                    fontWeight: 'bold'
+                                }}
+                                onClick={() => {
+                                    setCommentsShown(true);
+                                }}
+                            >
+                                {numberOfComments ? numberOfComments : 0}
+                            </p>
+
+                            <p style={{marginTop: '4rem'}}>Name: <span>{hut.name}</span></p>
                             {
                                 hut.type && hut.type.name
                                 ?
@@ -106,7 +151,7 @@ const hutdetails = ({ hut, error }) => {
                             {hut.where ? <p>Where: <span>{hut.where}</span></p> : <p>Where: <span>No location description provided</span></p>}
                             {hut.objectdescription ? <p>Description: <span>{hut.objectdescription}</span></p> : <p>Description: <span>No hut description provided</span></p>}
                             {hut.water ? <p>Water: <span>{hut.water}</span></p> : <p>Water Source: <span>Unknown</span></p>}
-                            {hut.warning ? <p>Warning: <span>{hut.warning}</span></p> : <p>Warning: <span>No warning given for this hut</span></p>}
+                            {hut.warning ? <p>Warning: <span>{hut.warning}</span></p> : <p>Warning: <span>No warnings given for this hut</span></p>}
                             {hut.addedby && hut.addedby.email && <p>Added by: <span>{hut.addedby.email.split('@')[0]}</span></p>}
                             <p className='button' onClick={() => setModalShown(true)}>
                                 Show on Map
@@ -142,7 +187,7 @@ const hutdetails = ({ hut, error }) => {
         {
             commentsShown
             &&
-            <CommentsModal setCommentsShown={setCommentsShown} hut={hut} />
+            <CommentsModal setCommentsShown={setCommentsShown} hut={hut} setReloadNumberOfComments={setReloadNumberOfComments} />
         }
 
     </React.Fragment>

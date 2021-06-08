@@ -8,7 +8,7 @@ const HutMapModal = ({ latitude, longitude, setModalShown }) => {
     return (
         <div className='hut-map-modal'>
             <div className="map-container">
-                <Map height="400px" center={{lat: latitude, lng: longitude}} zoom={15}>
+                <Map height="100%" center={{lat: latitude, lng: longitude}} zoom={15}>
                     <ZoomControl />
                     <MouseControl zoom={true} pan={true} wheel={true} />
                     <MarkerLayer>

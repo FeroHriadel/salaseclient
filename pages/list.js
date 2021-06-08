@@ -57,8 +57,8 @@ const list = ({ topPicks, error}) => { //this page is misnamed. Should have been
                 </nav>
 
                 <div className="book-container">
-                    <button className="arrow left"><FontAwesomeIcon icon={faChevronLeft} /></button>
-                    <button className="arrow right"><FontAwesomeIcon icon={faChevronRight} /></button>
+                    {/*<button className="arrow left"><FontAwesomeIcon icon={faChevronLeft} /></button>
+    <button className="arrow right"><FontAwesomeIcon icon={faChevronRight} /></button>*/}
                     <div className="book">
                         <div className="back">1</div>
                         <div className="page">2</div>
@@ -85,15 +85,17 @@ const list = ({ topPicks, error}) => { //this page is misnamed. Should have been
                                 <a style={{
                                     position: 'absolute',
                                     bottom: '15px',
-                                    right: '15px'
+                                    right: '15px',
+                                    opacity: '0.7',
+                                    fontSize: '0.75rem'
                                 }}
                                 >
-                                    Check out the complete list of huts here
+                                    complete list of huts
                                 </a>
                             </Link>
                         </div>
                         <div className="front">
-                            <p>Top Recommended</p>
+                            <p>Top Picks</p>
                             <p><FontAwesomeIcon icon={faBookOpen} /> open</p>
                         </div>
                     </div>

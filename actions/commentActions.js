@@ -69,3 +69,16 @@ export const deleteComment = (commentId) => {
             console.log(err);
         });
 }
+
+
+
+//GET NUMBER OF COMMENTS FOR HUTID
+export const getNumberOfComments = (hutid) => {
+    return fetch(`${process.env.api}/getnumberofcomments/${hutid}`)
+        .then(res => {
+            return res.json();
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}

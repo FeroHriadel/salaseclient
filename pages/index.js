@@ -18,7 +18,7 @@ const index = () => {
                 <ul className="navigation">
                     <li>
                         <FontAwesomeIcon icon={faScroll} className='icon'/>{' '}
-                        <Link href='/list'><a>List of Huts</a></Link>
+                        <Link href='/list'><a>Huts List</a></Link>
                     </li>
                     <li>
                         <FontAwesomeIcon icon={faQuestion} className='icon' />{' '}

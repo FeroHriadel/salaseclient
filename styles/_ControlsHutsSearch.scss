@@ -2,6 +2,7 @@
     
     form {
         display: flex;
+        justify-content: center;
 
         & select {
             -webkit-appearance: none;
@@ -63,5 +64,21 @@
             color: white;
         }
     }
+}
 
+
+
+
+
+//MEDIAQUERY
+////Form
+//1000
+@media (max-width: 1000px) {
+    .controls-huts-search-container form {
+        flex-direction: column;
+
+        & > * {
+            border-bottom: 1rem;
+        }
+    }
 }

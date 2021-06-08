@@ -59,7 +59,7 @@ const signinpage = ({ router }) => {
     //SIGNUP WiTH EMAIL AND PASSWORD
     const [signupValues, setSignupValues] = useState({signupEmail: '', signupPassword: ''});
     const { signupEmail, signupPassword} = signupValues;
-    const [blockSubmit, setBlocSubmit] = useState(false);
+    const [blockSubmit, setBlockSubmit] = useState(false);
 
     const signupChangeHandler = (e) => {
         setMessage('');
@@ -78,8 +78,8 @@ const signinpage = ({ router }) => {
                     return setMessage(data.error)
                 }
 
-                setMessage(data.message);
-                setBlocSubmit(true);
+                setMessage(`Please check your email to sign up`);
+                setBlockSubmit(true);
             });
     }
 

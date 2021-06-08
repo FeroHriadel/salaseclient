@@ -12,7 +12,7 @@ import ConfirmModal from './ConfirmModal';
 
 
 
-const CommentsModal = ({ hut, setCommentsShown }) => {
+const CommentsModal = ({ hut, setCommentsShown, setReloadNumberOfComments }) => {
     //DELETE COMMENT & DELETE CONFIRM MODAL
     const [showModal, setShowModal] = useState(false);
     const [actionConfirmed, setActionConfirmed] = useState(false);
@@ -121,10 +121,7 @@ const CommentsModal = ({ hut, setCommentsShown }) => {
 
         //redirect non-signedin user to '/signin'
         if (!formValues.user) {
-            showMessage(`Please sign in before leaving a comment. Redirecting...`);
-            setTimeout(() => {
-                Router.push(`/signin?redirect=/huts/${hut._id}`)
-            }, 2500);
+            showMessage(`Please sign in before leaving a comment.`);
             return;
         }
 
@@ -149,6 +146,7 @@ const CommentsModal = ({ hut, setCommentsShown }) => {
                     image: null
                 })
                 showMessage(`Comment added`);
+                setReloadNumberOfComments(true);
                 initialLoad();
             })
             .catch(err => {
@@ -179,7 +177,10 @@ const CommentsModal = ({ hut, setCommentsShown }) => {
                 <div className='add-comment-container'>
                     <form className='add-comment-form' onSubmit={submitHandler}>
 
-                        <p onClick={() => setFormShown(!formShown)}>
+                        <p 
+                            onClick={() => setFormShown(!formShown)}
+                            style={formShown ? {left: '15px'} : {left: '0px'}}
+                        >
                             {
                                 formShown ? 'Close' : 'Add Comment'
                             }
@@ -204,7 +205,11 @@ const CommentsModal = ({ hut, setCommentsShown }) => {
                             }
                         </button>
 
-                        <CommentImageUpload formValues={formValues} setFormValues={setFormValues} formShown={formShown} showMessage={showMessage} />
+                        {   
+                            formValues.user
+                            &&
+                            <CommentImageUpload formValues={formValues} setFormValues={setFormValues} formShown={formShown} showMessage={showMessage} />
+                        }
 
                     </form>
                 </div>            

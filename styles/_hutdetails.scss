@@ -10,7 +10,7 @@ body {
 }
 
 .hut-details-container {
-    max-width: 2000px;
+    width: 100vw;
     margin: auto;
     height: 100vh;
     overflow: hidden;
@@ -95,6 +95,8 @@ body {
 
 
 
+
+
 /*card*/
 .hut-details-container .card-container {
     width: 50%;
@@ -104,8 +106,8 @@ body {
 }
 
 .hut-details-container .card {
-    width: 60%;
-    height: 80%;
+    width: 450px;
+    height: 550px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -203,10 +205,6 @@ body {
             cursor: pointer;
             transition: color 0.3s linear;
 
-            &:hover {
-                color: #666;
-            }
-
             &:active {
                 transform: scale(0.8);
             }
@@ -244,3 +242,146 @@ body {
     }
 }
 
+
+
+
+//MEDIAQUERY
+//width:
+
+//1000
+@media (max-width: 1000px) {
+    .hut-details-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .hut-details-container .logo {
+        display: none;
+    }
+
+    .hut-details-container nav {
+        width: 100%;
+        order: 1;
+    }
+
+    .hut-details-container ul {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        margin-top: 2rem;
+    }
+
+    .hut-details-container li {
+        color: #ddd;
+        font-size: 1.5rem;
+        line-height: 2;
+        text-align: center;
+        text-shadow: black 1px 1px 5px;
+        font-family: 'Lobster', cursive;
+        transition: all 0.25s linear;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+}
+
+
+//650
+@media (max-width: 650px) {
+    .hut-details-container li {
+        font-size: 1rem;
+    }
+
+    .hut-details-container .icon {
+        font-size: 1rem;
+    }
+
+    .hut-details-container .card {
+        width: 180%;
+        height: 80%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) perspective(30cm) rotateY(0deg);
+        border-radius: 10px;
+    }
+}
+
+
+//480
+@media (max-width: 480px) {
+    .hut-details-container li {
+        font-size: 0.75rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .hut-details-container .icon {
+        font-size: 0.75rem;
+    }
+
+    .hut-details-container .card {
+        width: 180%;
+        height: 80%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) perspective(30cm) rotateY(0deg);
+        border-radius: 10px;
+    }
+}
+
+
+//430
+@media (max-width: 430px) {
+    .hut-details-container .card {
+        width: 180%;
+        height: 80%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) perspective(30cm) rotateY(0deg);
+        border-radius: 10px;
+    }
+}
+
+
+//380
+@media (max-width: 380px) {
+    .hut-details-container .card {
+        width: 180%;
+        height: 80%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) perspective(30cm) rotateY(0deg);
+        border-radius: 10px;
+    }
+}
+
+//330
+@media (max-width: 330px) {
+    .hut-details-container .card {
+        width: 180%;
+        height: 80%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) perspective(30cm) rotateY(0deg);
+        border-radius: 10px;
+    }
+
+    .hut-details-container .icon {
+        display: none;
+    }
+}
+
+
+
+
+//height:
+@media (max-height: 600px) {
+    .hut-details-container {
+        height: 1000px;
+    }
+}
