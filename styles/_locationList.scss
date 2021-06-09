@@ -115,3 +115,20 @@
         }
     }
 }
+
+
+
+//MEDIAQUERY
+@media (max-width: 600px) {
+    .admin-location-list-screen .card-container {
+        width: 90%;
+    }
+}
+
+
+//height:
+@media (max-height: 600px) {
+    .admin-location-list-screen {
+        min-height: 800px;
+    }
+}

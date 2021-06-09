@@ -107,6 +107,10 @@
                 &:hover {
                     color: #000;
                 }
+
+                &:nth-child(1) {
+                    flex: 2;
+                }
             }
 
             .buttons button {
@@ -141,5 +145,46 @@
         color: orangered;
         text-shadow: coral 0 0 10px;
         transform: scale(1.1);
+    }
+}
+
+
+
+
+
+//MEDIAQUERY
+@media (max-width: 1000px) {
+    .admin-user-list-screen .card-container {
+        width: 90%;
+    }
+
+    .admin-user-list-screen .user-details {
+        word-break: break-all;
+    }
+}
+
+@media (max-width: 750px) {
+    .admin-user-list-screen .buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        button {
+            margin-top: 5px;
+            margin-bottom: 5px;
+
+            &:nth-child(2) {
+                margin-top: 0px;
+            }
+        }
+    }
+}
+
+
+//height:
+@media (max-height: 600px) {
+    .admin-user-list-screen {
+        min-height: 800px;
     }
 }

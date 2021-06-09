@@ -10,7 +10,7 @@ import { faMapSigns } from "@fortawesome/free-solid-svg-icons";
 
 const about = () => {
     //TYPEWRITER EFFECT
-    const text = `'Salase' is a Slovak word for shepherd huts in the hills. There's still a couple of these places left; hidden in the mountains of Slovakia... remnants of the olden days built in remote areas - they just ooze the atmosphere of the rustic life our ancestors used to live. These places are magic. Their aesthetic value aside, Salase provide overnight shelter for hikers who need to get away from it all. Now, if that's you - you came to the right place.`
+    const text = `'Salase' is a Slovak word for shepherds huts in the hills. There's still a couple of these places left hidden in the mountains of Slovakia... Remnants of the olden days built in remote areas. These places are magic. Their aesthetic value aside, Salase provide overnight shelter for hikers who need to get away from it all. Now, if that's you - you came to the right place.`
 
     const [index, setIndex] = useState(0);
 
@@ -34,7 +34,7 @@ const about = () => {
     useEffect(() => {
         const timeout2 = setTimeout(() => {
             setParagraph2Shown(true);
-        }, 50 * text.length + 10000);
+        }, 50 * text.length + 7000);
 
         return () => clearTimeout(timeout2);
 

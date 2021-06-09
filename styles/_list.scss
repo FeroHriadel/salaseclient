@@ -156,7 +156,7 @@
     height: 650px;
     position: relative;
     transform-style: preserve-3d;
-    transform: perspective(60cm) rotateY(-10deg) translateZ(0) translateX(-20%);
+    transform: translateX(-20%) perspective(60cm) rotateY(-10deg) translateZ(0);
     box-shadow: rgba(250, 154, 119, 0.438) 0 0 200px;
     border-radius: 3px 5px 5px 3px;
     transition: all 0.5s linear;
@@ -503,7 +503,7 @@
         height: 70%;
         position: relative;
         transform-style: preserve-3d;
-        transform: perspective(60cm) rotateY(-10deg) translateZ(0) translateX(-5%);
+        transform: translateX(-5%) perspective(60cm) rotateY(-10deg) translateZ(0);
         box-shadow: rgba(250, 154, 119, 0.438) 0 0 200px;
         border-radius: 3px 5px 5px 3px;
         transition: all 0.5s linear;
@@ -543,7 +543,7 @@
         position: absolute;
         top: 100px;
         left: 50%;
-        transform: perspective(60cm) rotateY(-10deg) translateZ(0) translateX(-50%);
+        transform: translateX(-50%) perspective(60cm) rotateY(-10deg) translateZ(0);
     }
 }
 

@@ -242,3 +242,14 @@
         width: 100%
     }
 }
+
+
+
+
+//MEDIAQUERY
+@media (max-width: 360px) {
+    .signin-container .card-container {
+        width: 90%;
+        height: 500px;
+    }
+}

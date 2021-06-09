@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Router from 'next/router';
 import { isAuth, signout } from '../actions/authActions';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCog, faUserSlash } from "@fortawesome/free-solid-svg-icons";
+import { faGamepad } from "@fortawesome/free-solid-svg-icons";
+import { faUsersSlash } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faMapSigns } from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -36,40 +44,72 @@ const Header = ({ setLoggedOut = false, protectedRoute = false }) => {
                     {
                         isAdmin && (
                             <Link href='/admin'>
-                                <a>Admin</a>
+                                <React.Fragment>
+                                    <a onClick={() => {Router.push('/admin')}}>Admin</a>
+                                    <FontAwesomeIcon icon={faUserCog} className='icon' onClick={() => {Router.push('/admin')}} title='admin' />
+                                </React.Fragment>
                             </Link>
                         )
                     }
                 </li>
                 <li>
                     <Link href='/controls'>
-                        <a>Controls</a>
+                        <React.Fragment>
+                            <a onClick={() => {Router.push('/controls')}}>Controls</a>
+                            <FontAwesomeIcon icon={faGamepad} className='icon' onClick={() => {Router.push('/controls')}} title='controls' />
+                        </React.Fragment>
                     </Link>
                 </li>
                 <li>
                     {
                         loggedIn ?
-                            <a onClick={() => {
-                                signout();
-                                setIsLoggedIn(false);
-                                if (protectedRoute) {
-                                    setLoggedOut(true);
-                                }
-                            }}>Sign out</a>
+                            <React.Fragment>
+                                <a onClick={() => {
+                                    signout();
+                                    setIsLoggedIn(false);
+                                    setIsAdmin(false);
+                                    if (protectedRoute) {
+                                        setLoggedOut(true);
+                                    }
+                                }}>
+                                    Sign out
+                                </a>
+                                <FontAwesomeIcon 
+                                    icon={faUsersSlash} 
+                                    className='icon' onClick={() => {
+                                    signout();
+                                    setIsLoggedIn(false);
+                                    setIsAdmin(false);
+                                    if (protectedRoute) {
+                                        setLoggedOut(true);
+                                        }
+                                    }}
+                                    title='sign out'
+                                />
+                            </React.Fragment>
                         :
                             <Link href='/signin'>
-                                <a>Log in</a>
+                                <React.Fragment>
+                                    <a onClick={() => {Router.push('/signin')}}>Login</a>
+                                    <FontAwesomeIcon icon={faUser} className='icon' onClick={() => {Router.push('/signin')}} title='log in' />
+                                </React.Fragment>
                             </Link>
                     }
                 </li>
                 <li>
                     <Link href='/contact'>
-                        <a>Contact</a>
+                        <React.Fragment>
+                            <a onClick={() => {Router.push('/contact')}}>Contact</a>
+                            <FontAwesomeIcon icon={faEnvelope} className='icon' onClick={() => {Router.push('/contact')}} title='contact' />
+                        </React.Fragment>
                     </Link>
                 </li>
                 <li>
                     <Link href='/map'>
-                        <a>Map</a>
+                        <React.Fragment>
+                            <a onClick={() => {Router.push('/map')}}>Map</a>
+                            <FontAwesomeIcon icon={faMapSigns} className='icon' onClick={() => {Router.push('/map')}} title='map' />
+                        </React.Fragment>
                     </Link>
                 </li>
             </ul>

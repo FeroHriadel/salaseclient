@@ -72,3 +72,20 @@
     color: #333;
     font-family: 'Fondamento', cursive;
 }
+
+
+
+
+//MEDIAQUERY
+@media (max-width: 550px) {
+    .admin-top-picks-screen .card {
+        width: 90%;
+    }
+}
+
+//height:
+@media (max-height: 600px) {
+    .admin-top-picks-screen {
+        min-height: 800px;
+    }
+}

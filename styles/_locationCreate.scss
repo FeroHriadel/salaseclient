@@ -113,3 +113,23 @@
     }
 }
 
+
+
+
+
+//MEDIAQUERY
+@media (max-width: 400px) {
+    .admin-location-create-screen .form-container {
+        width: 90%;
+        margin-top: 2rem;
+    }
+}
+
+
+//height:
+@media (max-height: 600px) {
+    .admin-location-create-screen {
+        height: 800px;
+    }
+}
+

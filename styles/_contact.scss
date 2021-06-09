@@ -191,3 +191,12 @@
         transform: scale(1.1);
     }
 }
+
+
+
+//MEDIAQUERY
+@media (max-width: 450px) {
+    .contact-container .card-container {
+        width: 90%;
+    }
+}

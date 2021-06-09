@@ -7,8 +7,10 @@ import { getLocations } from '../actions/locationActions';
 import { getHutsByLocation } from '../actions/hutActions';
 import Link from 'next/link';
 
-
 import dynamic from "next/dynamic"; //enable importing w/o ssr
+import { Router } from 'next/router';
+
+
 
 
 const map = () => {
@@ -61,7 +63,9 @@ const map = () => {
             <div className='map-page-container'>
 
                 <ul className="buttons-container">
-                    <li className='button'> <FontAwesomeIcon icon={faArrowLeft} className='icon' />  Go Back </li>
+                    <Link href='/controls'>
+                        <li className='button'> <FontAwesomeIcon icon={faArrowLeft} className='icon' />Go Back</li>
+                    </Link>
                     {
                         locations
                         &&

@@ -1,7 +1,7 @@
 //general styling
 .about-page-container {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background: url('../public/images/about-bg.png') no-repeat center center/cover;
     display: flex;
     justify-content: center;
@@ -25,7 +25,6 @@
     justify-content: center;
     align-items: center;
     color: #ddd;
-    margin-left: 5%; /**/
 }
 
 .about-page-container ul {
@@ -101,6 +100,7 @@
     opacity: 0.75;
     margin: 0 2rem;
     margin-right: 5%;
+    margin-bottom: 2rem;
 }
 
 .about-page-container .paragraph {
@@ -137,4 +137,76 @@
 .about-page-container .shown {
     visibility: visible;
     opacity: 10;
+}
+
+
+
+
+//MEDIAQUERY
+//1000
+@media (max-width: 1000px) {
+    .about-page-container {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .about-page-container nav {
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+    }
+
+    .about-page-container ul {
+        display: flex;
+
+        li {
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+    }
+}
+
+
+//600
+@media (max-width: 600px) {
+    .about-page-container nav .logo {
+        display: none;
+    }
+
+    .about-page-container ul li {
+        font-size: 1rem;
+    }
+
+    .about-page-container .text p {
+        font-size: 1.5rem;
+    }
+}
+
+
+//450
+@media (max-width: 450px) {
+    .about-page-container ul li {
+        font-size: 0.75rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+}
+
+//319
+@media (max-width: 319px) {
+    .about-page-container .icon {
+        display: none;
+    }
+
+    .about-page-container .text p {
+        font-size: 1.25rem;
+    }
+}
+
+
+//height:
+@media (max-height: 600px) {
+    .about-page-container {
+        min-height: 600px;
+    }
 }

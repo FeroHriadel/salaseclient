@@ -186,7 +186,7 @@
     background-attachment: fixed;
     width: 100%;
     height: 70vh;
-    background-image: url('../public/images/osnicazrozsutca.jpg');
+    background-image: url('../public/images/zapadneTatry.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -216,6 +216,7 @@
         color: #ddd;
         font-family: Fondamento, cursive;
         font-size: 1.5rem;
+        text-align: center;
         margin-top: 2rem;
         margin-bottom: 2rem;
     }
@@ -232,6 +233,7 @@
             box-shadow: -5px 5px 10px #333;
             position: relative;
             overflow: hidden;
+            font-family: MateSC;
 
             &:hover .shade {
                 opacity: 1;
@@ -256,6 +258,7 @@
 
             p {
                 font-size: 1.5rem;
+                font-family: MateSC;
                 color: #ddd;
                 text-shadow: 1px 1px 3px #111;
                 position: absolute;
@@ -480,5 +483,29 @@
                 }
             }
         }
+    }
+}
+
+
+
+
+////Locations Section
+//image
+@media (max-width: 400px) {
+    .controls-container #locations-section img {
+        width: 250px;
+    }
+
+    .controls-container .locations-list-container {
+        width: 95% !important;
+    }
+}
+
+
+
+//HEIGHT:
+@media (max-height: 600px) {
+    .controls-container .img-container  {
+        height: 100vh;
     }
 }

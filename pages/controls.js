@@ -241,7 +241,7 @@ const controls = () => {
                                                 borderRadius: '10px'
                                             }}
                                         >
-                                            <div className="shade" />
+                                        <div className="shade" />
                                             <p>{location.name}</p>
                                             <Link href={`/locations/${location._id}`}>
                                                 <small>See huts in {location.name}</small>
