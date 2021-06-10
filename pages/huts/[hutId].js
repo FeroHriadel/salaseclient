@@ -15,6 +15,7 @@ import { faMapSigns } from "@fortawesome/free-solid-svg-icons";
 import { faComments } from "@fortawesome/free-solid-svg-icons";
 import HutMapModal from '../../components/HutMapModal';
 import CommentsModal from '../../components/CommentsModal'
+import Head from 'next/head';
 
 
 
@@ -50,6 +51,12 @@ const hutdetails = ({ hut, error }) => {
     //RENDER
     return (
     <React.Fragment>
+
+        <Head>
+            <title>{hut && hut.name ? `Salase | ${hut.name}` : 'Salase'}</title>
+            <meta name='description' content='Bivy and Huts in Slovak Mountains' />
+            <link rel="icon" href="/favicon.png" />
+        </Head>
 
         <div className="hut-details-container">
 
@@ -199,7 +206,7 @@ const hutdetails = ({ hut, error }) => {
 hutdetails.getInitialProps = ({ query }) => {
     return getHutById(query.hutId)
         .then(data => {
-            if (data.error) {
+            if (data.error || !data) {
                 return {hut: null, error: data.error || 'Something went wrong in [hutId] getInitialProps'}
             }
 

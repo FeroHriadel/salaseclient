@@ -1,0 +1,19 @@
+.loader-container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 15;
+    background: #333;
+    pointer-events: none;
+    opacity: 1;
+    animation-name: loaderFadeOut;
+    animation-delay: 2s;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes loaderFadeOut {
+    0% {opacity: 1}
+    100% {opacity: 0}
+}

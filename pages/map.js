@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
-import Popup from '../components/Popup';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { getLocations } from '../actions/locationActions';
@@ -21,15 +20,15 @@ const map = () => {
 
 
 
-    //POPUP
-    const [popupShown, setIsPopupShown] = useState(false);
-    const [popupText, setPopupText] = useState('');
+    //MESSAGE
+    const [messageShown, setMessageShown] = useState(false);
+    const [messageText, setMessageText] = useState('');
 
-    const showPopup = (text) => {
-        setPopupText(text);
-        setIsPopupShown(!popupShown);
+    const showMessage = (text) => {
+        setMessageText(text);
+        setMessageShown(!messageShown);
         setTimeout(() => {
-            setIsPopupShown(popupShown);
+            setMessageShown(messageShown);
         }, 3000);
     }
 
@@ -42,7 +41,7 @@ const map = () => {
         getLocations()
             .then(data => {
                 if (data.error) {
-                    return showPopup(`Failed to fetch locations`);
+                    return showMessage(`Failed to fetch locations`);
                 }
 
                 setLocations(data);
@@ -56,7 +55,7 @@ const map = () => {
 
     //RENDER
     return (
-        <Popup popupShown={popupShown} popupText={popupText}>
+        <React.Fragment>
 
             <Header />
 
@@ -64,18 +63,20 @@ const map = () => {
 
                 <ul className="buttons-container">
                     <Link href='/controls'>
-                        <li className='button'> <FontAwesomeIcon icon={faArrowLeft} className='icon' />Go Back</li>
+                        <li className='button'>
+                            <FontAwesomeIcon icon={faArrowLeft} className='icon' />Go Back
+                        </li>
                     </Link>
                     {
                         locations
                         &&
                         locations.map((location) => (
                             <li key={location._id} className='button' onClick={() => {
-                                showPopup(`Getting huts in ${location.name}`);
+                                showMessage(`Getting huts in ${location.name}`);
                                 getHutsByLocation(location._id)
                                     .then(data => {
                                         if (data.error) {
-                                            return showPopup(`Fetching huts failed`)
+                                            return showMessage(`Fetching huts failed`)
                                         }
 
                                         setHuts(data);
@@ -84,6 +85,22 @@ const map = () => {
                                 {location.name}
                             </li>
                         ))
+                    }
+
+                    {
+                        messageShown
+                        ?
+                        <p style={{
+                            color: '#ddd',
+                            fontFamily: 'MateSC',
+                            fontSize: '1rem',
+                            marginTop: '2rem'
+                        }}
+                        >
+                            {messageText}
+                        </p>
+                        :
+                        ''
                     }
                 </ul>
 
@@ -96,7 +113,7 @@ const map = () => {
             
             </div>
 
-        </Popup>
+        </React.Fragment>
 
     )
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { presignup, signup, signin, authenticate, isAuth, getGoogleClientId } from '../actions/authActions';
 import Router from 'next/router';
 import { withRouter } from 'next/router';
@@ -125,6 +126,16 @@ const signinpage = ({ router }) => {
             <Header></Header>
 
             <div className='signin-container'>
+
+            <button 
+                className="go-back-btn" 
+                onClick={() => {Router.push(router.query.redirect ? router.query.redirect : '/controls')}}
+            >
+                <FontAwesomeIcon icon={faArrowLeft} className='icon'/>
+                {' '}
+                Go Back
+            </button>
+
                 <div className="card-container">        
                     <div className="card">
 

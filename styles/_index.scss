@@ -90,6 +90,11 @@
     color: coral;
 }
 
+.landing-page-container li:active .icon {
+    transform: scale(0.9);
+    color: white;
+}
+
 .landing-page-container .current {
     color: rgb(211, 103, 63);
     position: relative;

@@ -7,6 +7,7 @@
     align-items: center;
     background: url('../public/images/mainbg.jpg') no-repeat center center/cover;
     overflow: hidden;
+    position: relative;
 }
 
 
@@ -243,6 +244,28 @@
     }
 }
 
+.signin-container .go-back-btn {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    padding: 0;
+    margin: 0;
+    outline: 0;
+    background: 0;
+    border: 0;
+    font-family: MateSC;
+    color: #ddd;
+    text-shadow: #444 -1px 1px 5px;
+    cursor: pointer;
+    transition: all 0.4s linear;
+
+    &:hover {
+        color: orangered;
+        text-shadow: coral 0 0 10px;
+        transform: scale(1.1);
+    }
+}
+
 
 
 
@@ -251,5 +274,13 @@
     .signin-container .card-container {
         width: 90%;
         height: 500px;
+        margin-top: 2rem;
+    }
+}
+
+//height:
+@media (max-height: 600px) {
+    .signin-container {
+        height: 800px;
     }
 }

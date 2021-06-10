@@ -143,7 +143,9 @@ const addhut = ({ router }) => {
             return showPopup(`Please make sure name, lat, long, mountain range, type & image are filled in`);
         }
 
-        addHut(values)
+        let nameBig1stLetter = name.charAt(0).toUpperCase() + name.slice(1);
+
+        addHut({...values, name: nameBig1stLetter })
             .then(data => {
                 if (data.error) {
                     return showPopup(data.error);

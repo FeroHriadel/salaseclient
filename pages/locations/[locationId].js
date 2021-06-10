@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import Head from 'next/head';
 
 
 
@@ -21,6 +22,12 @@ const hutsinlocation = ({ huts, error }) => {
     //RENDER
     return (
         <React.Fragment>
+
+            <Head>
+                <title>{huts && huts[0].location.name ? `Salase | ${huts[0].location.name}` : 'Salase | Locations'}</title>
+                <meta name='description' content='Bivy and Huts in Slovak Mountains' />
+                <link rel="icon" href="/favicon.png" />
+            </Head>
         
             <Header />
 

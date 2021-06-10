@@ -156,7 +156,9 @@
     height: 650px;
     position: relative;
     transform-style: preserve-3d;
-    transform: translateX(-20%) perspective(60cm) rotateY(-10deg) translateZ(0);
+    transform: perspective(60cm) rotateY(-10deg) translateZ(0);
+    margin-right: 20%;
+    margin-left: -20%;
     box-shadow: rgba(250, 154, 119, 0.438) 0 0 200px;
     border-radius: 3px 5px 5px 3px;
     transition: all 0.5s linear;
@@ -336,9 +338,8 @@
 
 
 
-
-//WIDTH:
-
+/////////MEDIAQUERY
+////WIDTH:
 //1300
 @media (max-width: 1300px) {
     .list-page-container {
@@ -390,6 +391,8 @@
         transition: all 0.5s linear;
         animation-name: zoom;
         animation-duration: 4s;
+        margin-right: 0%;
+        margin-left: 0%;
     }
 }
 
@@ -426,6 +429,8 @@
         transition: all 0.5s linear;
         animation-name: zoom;
         animation-duration: 4s;
+        margin-right: 0%;
+        margin-left: 0%;
     }
 }
 
@@ -458,6 +463,8 @@
         transition: all 0.5s linear;
         animation-name: zoom;
         animation-duration: 4s;
+        margin-right: 0%;
+        margin-left: 0%;
     }
 
     .list-page-container .front p:nth-child(1) {
@@ -480,6 +487,8 @@
         transition: all 0.5s linear;
         animation-name: zoom;
         animation-duration: 4s;
+        margin-right: 0%;
+        margin-left: 0%;
     }
 }
 
@@ -488,6 +497,8 @@
 @media (max-width: 300px) {
     .list-page-container .book {
         transform: perspective(60cm) rotateY(-10deg) translateZ(0) scale(0.9);
+        margin-right: 0%;
+        margin-left: 0%;
     } 
 }
 
@@ -503,7 +514,9 @@
         height: 70%;
         position: relative;
         transform-style: preserve-3d;
-        transform: translateX(-5%) perspective(60cm) rotateY(-10deg) translateZ(0);
+        transform: perspective(60cm) rotateY(-10deg) translateZ(0);
+        margin-right: 5%;
+        margin-left: -5%;
         box-shadow: rgba(250, 154, 119, 0.438) 0 0 200px;
         border-radius: 3px 5px 5px 3px;
         transition: all 0.5s linear;
@@ -544,18 +557,7 @@
         top: 100px;
         left: 50%;
         transform: translateX(-50%) perspective(60cm) rotateY(-10deg) translateZ(0);
+        margin-right: 0%;
+        margin-left: 0%;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

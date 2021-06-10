@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Router from 'next/router';
+import Router, { withRouter } from 'next/router';
 import Header from '../components/Header';
 import Popup from '../components/Popup';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,7 +8,8 @@ import { sendForm } from '../actions/contactActions';
 
 
 
-const contact = () => {
+
+const contact = ({ router }) => {
     //POPUP
     const [popupShown, setIsPopupShown] = useState(false);
     const [popupText, setPopupText] = useState('');
@@ -61,7 +62,7 @@ const contact = () => {
 
             <div className='contact-container'>
 
-                <button className="go-back-btn" onClick={() => {Router.push('/controls')}}>
+                <button className="go-back-btn" onClick={() => {Router.push(router.query.redirect ? router.query.redirect : '/controls')}}>
                     <FontAwesomeIcon icon={faArrowLeft} className='icon'/>
                     {' '}
                     Go Back
@@ -104,4 +105,4 @@ const contact = () => {
     )
 }
 
-export default contact
+export default withRouter(contact)

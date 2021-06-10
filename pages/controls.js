@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Link from 'next/link';
-import Popup from '../components/Popup';
 import { isAuth } from '../actions/authActions';
 import { searchHuts } from '../actions/hutActions';
 import { getLocations } from '../actions/locationActions';
 import ControlsHutSearch from '../components/ControlsHutSearch';
 import moment from 'moment';
 import Router from 'next/router';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -119,6 +120,24 @@ const controls = () => {
         </div>
     
     )   
+
+
+
+    //GO-UP BUTTON SHOW/HIDE
+    const [showGoUpBtn, setShowGoUpBtn] = useState(false);
+
+    useEffect(() => {
+        const toggleGoUpBtn = () => {
+            if (window.scrollY > 200) {
+                setShowGoUpBtn(true);
+            } else {
+                setShowGoUpBtn(false);
+            }
+        }
+
+        window.addEventListener('scroll', toggleGoUpBtn);
+        return () => window.removeEventListener('scroll', toggleGoUpBtn);
+    }, [])
   
 
 
@@ -149,7 +168,7 @@ const controls = () => {
 
                             <div className="edit-container"> {/* this is named wrong => it's the 2nd column with buttons */}
                                 <h2>Huts...</h2>
-                                <Link href={isAuth() ? '/huts/addhut?redirect=/controls' : '/signin?redirect=/controls'}>
+                                <Link href={isAuth() ? '/huts/addhut?redirect=/controls' : '/signin?redirect=/huts/addhut'}>
                                     <a>Add Hut</a>
                                 </Link>
                                 <Link href='/controls/#hut-list-section'>
@@ -253,6 +272,33 @@ const controls = () => {
                         </React.Fragment>
                     }
                 </section>
+
+                {
+                    showGoUpBtn
+                    &&
+                    <div 
+                        className='go-up-btn'
+                        style={{
+                            position: 'fixed',
+                            bottom: '20px',
+                            right: '20px',
+                            borderRadius: '50%',
+                            background: 'rgba(100, 99, 94, 0.5)',
+                            width: '40px',
+                            height: '40px',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            cursor: 'pointer'
+                        }}
+                        onClick={() => {
+                            Router.push('/controls');
+                        }}
+                    >
+                        <FontAwesomeIcon icon={faChevronUp} style={{color: '#ddd'}} />
+                    </div>
+                }
+
             </div>
 
         </React.Fragment>
