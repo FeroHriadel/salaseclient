@@ -81,7 +81,14 @@ const list = ({ topPicks, error}) => { //this page is misnamed. Should have been
                                     :
                                     topPicks && topPicks.length < 1
                                     ?
-                                    <h2>No huts have been added to Top Picks yet</h2>
+                                    <h2 style={{
+                                        color: '#444',
+                                        marginTop: '2rem',
+                                        fontFamily: 'Fondamento, cursive',
+                                        textAlign: 'center'
+                                    }}>
+                                        No huts have been added to Top Picks yet
+                                    </h2>
                                     :
                                     topPicks.map(topPick => (
                                         <Link href={`/huts/${topPick.hutId}`} key={topPick._id}>
