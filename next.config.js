@@ -1,5 +1,7 @@
 module.exports = {
     env: {
-      api: "http://localhost:5000/api"
+      api: "https://murmuring-taiga-44093.herokuapp.com/api"
     }
 };
+
+//development api: "http://localhost:5000/api"
