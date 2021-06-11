@@ -130,7 +130,7 @@
     animation: fadeOut;
     animation-fill-mode: forwards;
     animation-duration: 5s;
-    animation-delay: 9s;
+    animation-delay: 7s;
 }
 
 @keyframes fadeOut {
@@ -162,7 +162,7 @@
     transform: translateY(-3rem);
     opacity: 0;
     animation-name: goDown;
-    animation-delay: calc(0.07s * var(--i) + 5s);
+    animation-delay: calc(0.07s * var(--i) + 3s);
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
 }
@@ -182,7 +182,7 @@
     transform: translateY(3rem);
     opacity: 0;
     animation-name: goUp;
-    animation-delay: calc(0.07s * var(--i) + 5s);
+    animation-delay: calc(0.07s * var(--i) + 3s);
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
 }
