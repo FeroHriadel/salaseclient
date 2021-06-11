@@ -24,7 +24,7 @@ const hutsinlocation = ({ huts, error }) => {
         <React.Fragment>
 
             <Head>
-                <title>{huts && huts[0].location.name ? `Salase | ${huts[0].location.name}` : 'Salase | Locations'}</title>
+                <title>{huts && huts[0] && hut[0].location.name ? `Salase | ${huts[0].location.name}` : 'Salase | Locations'}</title>
                 <meta name='description' content='Bivy and Huts in Slovak Mountains' />
                 <link rel="icon" href="/favicon.png" />
             </Head>
