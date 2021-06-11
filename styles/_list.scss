@@ -427,7 +427,7 @@
         box-shadow: rgba(250, 154, 119, 0.438) 0 0 200px;
         border-radius: 3px 5px 5px 3px;
         transition: all 0.5s linear;
-        //no animation
+        animation-name: none;
         animation-duration: 4s;
         margin-right: 0%;
         margin-left: 0%;
@@ -461,7 +461,7 @@
         box-shadow: rgba(250, 154, 119, 0.438) 0 0 200px;
         border-radius: 3px 5px 5px 3px;
         transition: all 0.5s linear;
-        //no animation
+        animation-name: none;
         animation-duration: 4s;
         margin-right: 0%;
         margin-left: 0%;
@@ -499,6 +499,7 @@
         transform: perspective(60cm) rotateY(-10deg) translateZ(0) scale(0.9);
         margin-right: 0%;
         margin-left: 0%;
+        animation-name: none;
     } 
 }
 
@@ -556,6 +557,7 @@
         position: absolute;
         top: 100px;
         left: 50%;
+        animation-name: none;
         transform: translateX(-50%) perspective(60cm) rotateY(-10deg) translateZ(0);
         margin-right: 0%;
         margin-left: 0%;

@@ -83,7 +83,7 @@ const list = ({ topPicks, error}) => { //this page is misnamed. Should have been
                                     ?
                                     <h2 style={{
                                         color: '#444',
-                                        marginTop: '2rem',
+                                        marginTop: '4rem',
                                         fontFamily: 'Fondamento, cursive',
                                         textAlign: 'center'
                                     }}>
