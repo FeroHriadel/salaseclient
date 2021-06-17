@@ -97,7 +97,7 @@ const toppicks = () => {
                         :
                         topPicks.length < 1
                         ?
-                        <h2>There are currently no hut in the 'Top Picks' list</h2>
+                        <h2>There are currently no huts in the 'Top Picks' list</h2>
                         :
                         topPicks.map((topPick, index) => (
                             <div className="line" key={topPick._id}>

@@ -53,7 +53,7 @@ const about = () => {
                 <ul className="navigation">
                     <li>
                         <FontAwesomeIcon icon={faScroll} className='icon'/>{' '}
-                        <Link href='/list'><a>List of Huts</a></Link>
+                        <Link href='/controls/#hut-list-section'><a>Hut List</a></Link>
                     </li>
                     <li className="current">
                         <FontAwesomeIcon icon={faQuestion} className='icon' />{' '}
@@ -75,7 +75,7 @@ const about = () => {
                     {text.substring(0, index)}
                 </p>
                 <p className={`paragraph two ${paragraph2Shown ? 'shown' : ''}`}>
-                    Please take a look around the site and see if you can find a place that appeals to the outdoor you. <Link href='/list'><a className="link">List of Huts...</a></Link>
+                    Please take a look around the site and see if you can find a place that appeals to the outdoor you. <Link href='/controls/#hut-list-section'><a className="link">List of Huts...</a></Link>
                 </p>
             </div>
 

@@ -1,3 +1,249 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #333;
+}
+
+.list-page-container {
+    width: 100vw;
+    margin: auto;
+    height: calc(100vh - 80px); //80px = Header's height
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('../public/images/mainbg.jpg') no-repeat center center/cover;
+    box-shadow: silver 0 0 200px;
+    position: relative;
+
+    .card {
+        width: 75%;
+        height: 500px;
+        padding: 2.5%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        border-radius: 10px;
+        background: rgb(238, 235, 219);
+        box-shadow: #444 25px -25px 100px inset, black -10px 10px 10px;
+        filter: drop-shadow(rgb(78, 76, 75) 0 0 10px);
+        overflow: hidden;
+        opacity: 0.75;
+
+        .wrapper-for-scroll {
+            width: 100%;
+            height: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            &::-webkit-scrollbar-track {
+                box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
+                border-radius: 10px;
+                background-color: rgba(255, 255, 255, 0.3);
+            }
+        
+            &::-webkit-scrollbar {
+                width: 5px;
+                opacity: 0.5;
+                display: none; //delete this to show scrollbar
+            }
+        
+            &::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+
+            .image {
+                height: 100%; // = 500px
+                border-radius: 10px;
+                margin-right: 15px;
+                width: 66%;
+                min-width: 350px;
+            }
+
+            .text-container {
+                //padding-right: 15px; //add this if scrollbar shown
+                position: relative;
+                flex: 1;
+
+                h2 {
+                    color: orangered;
+                    font-family: 'Fondamento', cursive;
+                }
+
+                p {
+                    color: #333;
+                    font-family: 'Fondamento', cursive;
+                    padding: 0;
+                    margin-top: 0;
+                    margin-bottom: 2rem;
+                    font-size: 1.25rem;
+                    margin-bottom: 5rem;
+                }
+
+                span {
+                    color: #333;
+                    font-family: 'Fondamento', cursive;
+                    font-style: italic;
+                    font-size: 1rem;
+                }
+
+                a {
+                    color: orangered;
+                    transition: 0.4s linear;
+                    font-family: 'Fondamento', cursive;
+                    text-decoration: none;
+                    position: absolute;
+                    bottom: 1rem;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    font-size: 1.12rem;
+
+                    &:hover {
+                        text-shadow: 0 0 5px coral;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//arrows
+.list-page-container .left-arrow {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    color: #ddd;
+    filter: drop-shadow(#111 -1px 1px 2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s linear;
+
+    &:hover {
+        transform: scale(1.05);
+        color: coral;
+    }
+
+    &:active {
+        transform: scale(0.3);
+    }
+}
+
+.list-page-container .right-arrow {
+    position: absolute;
+    top: 10px;
+    right:10px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    color: #ddd;
+    filter: drop-shadow(#111 -1px 1px 2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.4s linear;
+
+    &:hover {
+        transform: scale(1.1);
+        color: coral;
+    }
+
+    &:active {
+        transform: scale(0.3);
+    }
+}
+
+.list-page-container .go-back-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: #ddd;
+    text-shadow: 1px 1px 2px #111;
+    font-family: 'Fondamento', cursive;
+    cursor: pointer;
+}
+
+
+
+
+
+//MEDIAQUERY
+//width: M-size
+@media (max-width: 1000px) {
+    .list-page-container .card {
+        width: 90%;
+    }
+}
+
+@media (max-width: 700px) {
+    .list-page-container .card {
+        opacity: 0.9;
+    }
+
+    .list-page-container .card .wrapper-for-scroll{
+        flex-direction: column;
+
+        .image {
+            width: 100%;
+            min-width: 100%;
+            min-height: 250px;
+        }
+
+        .text-container {
+            margin-top: 15px;
+            width: 100%;
+
+            p:nth-child(2) {
+                margin-top: 2rem;
+            }
+        }
+    }
+}
+
+
+//width: S-size
+@media (max-width: 420px) {
+    .list-page-container .card {
+        min-height: 80%;
+    }
+}
+
+
+
+//height: S-size
+@media (max-height: 600px) {
+    .list-page-container {
+        height: 700px;
+    }
+}
+
+//height: L-size
+@media (min-height: 900px) {
+    .list-page-container .card {
+        height: 600px;
+    }
+}
+
+
+
+
+/***************************ORIGINAL CSS ************************
 //general styling
 .list-page-container {
     width: 100vw;
@@ -22,7 +268,7 @@
 
 
 
-/* navigation */
+// navigation 
 .list-page-container nav {
     display: flex;
     flex-direction: column;
@@ -104,7 +350,7 @@
 
 
 
-/*book*/
+// book
 .list-page-container .book-container {
     width: 50%;
     height: 100vh;
@@ -281,7 +527,7 @@
     top: 3px;
 }
 
-.list-page-container .page:nth-child(5) { /*this is the content page*/
+.list-page-container .page:nth-child(5) { //this is the content page
     z-index: 5;
     right: -3px;
     height: calc(100% - 4px);
@@ -563,3 +809,4 @@
         margin-left: 0%;
     }
 }
+*/
